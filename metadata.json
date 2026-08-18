@@ -1,0 +1,6 @@
+{
+  "name": "Beyond ERP",
+  "description": "Comprehensive enterprise resource planning (ERP) platform for multi-sector business management",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
