@@ -112,7 +112,7 @@ export function SectorRecordModal() {
         </label>
 
         <label style={lbl}>
-          Value (ETB)
+          Value (CAD)
           <input
             type="number"
             min="0"

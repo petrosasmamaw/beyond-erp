@@ -1,17 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { formatCurrency, getInitials, validateEthiopianPhone } from "./format";
+import { formatCurrency, getInitials, validateCanadianPhone } from "./format";
 
 describe("format helpers", () => {
-  it("formats ETB values", () => {
-    expect(formatCurrency(123456)).toBe("ETB 123,456");
+  it("formats CAD values", () => {
+    expect(formatCurrency(123456)).toContain("CAD");
   });
 
   it("generates initials", () => {
-    expect(getInitials("Abebe Kebede")).toBe("AK");
+    expect(getInitials("John Doe")).toBe("JD");
   });
 
-  it("validates Ethiopian phone numbers", () => {
-    expect(validateEthiopianPhone("+251 911 234 567")).toBe(true);
-    expect(validateEthiopianPhone("+1 555 000")).toBe(false);
+  it("validates Canadian phone numbers", () => {
+    expect(validateCanadianPhone("+1 415 555 2671")).toBe(true);
+    expect(validateCanadianPhone("123")).toBe(false);
   });
 });

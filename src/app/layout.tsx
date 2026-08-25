@@ -13,10 +13,9 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Beyond ERP Canada",
-  description: "Comprehensive enterprise resource planning platform for Canadian accounting, tax, payroll, and banking standards.",
+  title: "BeyondERP",
+  description: "Comprehensive enterprise resource planning platform.",
   manifest: "/manifest.json",
-  icons: { icon: "/beyond.ico" }
 };
 
 export const viewport: Viewport = {

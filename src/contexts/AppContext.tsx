@@ -12,6 +12,7 @@ import { api } from "@/lib/api";
 import { getEthiopianDate, getEthiopianHoliday } from "@/lib/format";
 import type { DomainWorkflow, Employee, Sector, Settings, Transaction } from "@/lib/types";
 import { useAuth } from "./AuthContext";
+import { readQueue, readOperationQueue, writeQueue, writeOperationQueue, queueOperation } from "@/features/erp/offline";
 
 export type SectorRecordTemplate = {
   recordType: string;
@@ -129,9 +130,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [user, refresh, checkBackend]);
 
   const syncPending = useCallback(async () => {
-    const { readQueue, readOperationQueue, writeQueue, writeOperationQueue } = await import(
-      "@/features/erp/offline"
-    );
     const queue = readQueue();
     const operations = readOperationQueue();
     setPendingCount(queue.length + operations.length);
@@ -190,7 +188,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [isSyncing, refresh, showToast]);
 
   const saveSettings = useCallback(async (patch: Partial<Settings>) => {
-    const { queueOperation, readQueue } = await import("@/features/erp/offline");
     if (!navigator.onLine) {
       const count = queueOperation({ action: "UPDATE_SETTINGS", label: "Settings", payload: patch });
       setPendingCount(readQueue().length + count);

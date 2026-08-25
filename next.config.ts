@@ -4,6 +4,7 @@ const backendUrl = process.env.BACKEND_URL ?? process.env.NEXT_PUBLIC_API_URL ??
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  devIndicators: false,
   async rewrites() {
     if (!backendUrl) {
       return [];

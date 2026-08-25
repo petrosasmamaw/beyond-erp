@@ -65,18 +65,18 @@ export const MOCK_SETTINGS: Settings = {
 };
 
 export const MOCK_TRANSACTIONS: Transaction[] = [
-  { id: "t1", type: "INCOME", amount: 85000, description: "Product sales – bulk order", category: "Sales", sectorId: "retail-sector", paymentMethod: "Telebirr", vatAmount: 11087, status: "COMPLETED", synced: true, occurredAt: d(1) },
-  { id: "t2", type: "INCOME", amount: 42500, description: "Consulting service fee", category: "Services", sectorId: null, paymentMethod: "CBE Transfer", vatAmount: 5543, status: "COMPLETED", synced: true, occurredAt: d(2) },
-  { id: "t3", type: "EXPENSE", amount: 18000, description: "Office rent – May 2025", category: "Rent", sectorId: null, paymentMethod: "Cash", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(3) },
-  { id: "t4", type: "INCOME", amount: 33000, description: "Delivery service revenue", category: "Logistics", sectorId: "logistics-sector", paymentMethod: "Telebirr", vatAmount: 4304, status: "COMPLETED", synced: true, occurredAt: d(4) },
-  { id: "t5", type: "EXPENSE", amount: 9500, description: "Fuel and vehicle maintenance", category: "Transport", sectorId: "logistics-sector", paymentMethod: "Cash", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(5) },
-  { id: "t6", type: "EXPENSE", amount: 55000, description: "Inventory purchase – wholesale", category: "Inventory", sectorId: "retail-sector", paymentMethod: "CBE Transfer", vatAmount: 7174, status: "COMPLETED", synced: true, occurredAt: d(6) },
-  { id: "t7", type: "INCOME", amount: 21000, description: "Medical supplies sale", category: "Sales", sectorId: "health-sector", paymentMethod: "Cash", vatAmount: 2739, status: "COMPLETED", synced: true, occurredAt: d(7) },
-  { id: "t8", type: "EXPENSE", amount: 12000, description: "Staff salaries advance", category: "Payroll", sectorId: null, paymentMethod: "CBE Transfer", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(8) },
-  { id: "t9", type: "INCOME", amount: 67500, description: "Hotel accommodation bookings", category: "Hospitality", sectorId: "hotel-sector", paymentMethod: "Telebirr", vatAmount: 8804, status: "COMPLETED", synced: true, occurredAt: d(9) },
-  { id: "t10", type: "EXPENSE", amount: 7800, description: "Electricity & utilities", category: "Utilities", sectorId: null, paymentMethod: "Cash", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(10) },
-  { id: "t11", type: "INCOME", amount: 15000, description: "Training workshop fees", category: "Education", sectorId: "edu-sector", paymentMethod: "CBE Transfer", vatAmount: 1957, status: "PENDING", synced: false, occurredAt: d(0) },
-  { id: "t12", type: "EXPENSE", amount: 4500, description: "Office supplies", category: "Office", sectorId: null, paymentMethod: "Cash", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(11) }
+  { id: "t1", type: "INCOME", amount: 85000, description: "Product sales – bulk order", category: "Sales", sectorId: "retail-sector", paymentMethod: "Card Payment", vatAmount: 11087, status: "COMPLETED", synced: true, occurredAt: d(1) },
+  { id: "t2", type: "INCOME", amount: 42500, description: "Consulting service fee", category: "Services", sectorId: null, paymentMethod: "Direct Deposit", vatAmount: 5543, status: "COMPLETED", synced: true, occurredAt: d(2) },
+  { id: "t3", type: "EXPENSE", amount: 18000, description: "Office rent – May 2025", category: "Rent", sectorId: null, paymentMethod: "Direct Deposit", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(3) },
+  { id: "t4", type: "INCOME", amount: 33000, description: "Delivery service revenue", category: "Logistics", sectorId: "logistics-sector", paymentMethod: "Card Payment", vatAmount: 4304, status: "COMPLETED", synced: true, occurredAt: d(4) },
+  { id: "t5", type: "EXPENSE", amount: 9500, description: "Fuel and vehicle maintenance", category: "Transport", sectorId: "logistics-sector", paymentMethod: "Card Payment", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(5) },
+  { id: "t6", type: "EXPENSE", amount: 55000, description: "Inventory purchase – wholesale", category: "Inventory", sectorId: "retail-sector", paymentMethod: "Direct Deposit", vatAmount: 7174, status: "COMPLETED", synced: true, occurredAt: d(6) },
+  { id: "t7", type: "INCOME", amount: 21000, description: "Medical supplies sale", category: "Sales", sectorId: "health-sector", paymentMethod: "Card Payment", vatAmount: 2739, status: "COMPLETED", synced: true, occurredAt: d(7) },
+  { id: "t8", type: "EXPENSE", amount: 12000, description: "Staff salaries advance", category: "Payroll", sectorId: null, paymentMethod: "Direct Deposit", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(8) },
+  { id: "t9", type: "INCOME", amount: 67500, description: "Hotel accommodation bookings", category: "Hospitality", sectorId: "hotel-sector", paymentMethod: "Card Payment", vatAmount: 8804, status: "COMPLETED", synced: true, occurredAt: d(9) },
+  { id: "t10", type: "EXPENSE", amount: 7800, description: "Electricity & utilities", category: "Utilities", sectorId: null, paymentMethod: "Direct Deposit", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(10) },
+  { id: "t11", type: "INCOME", amount: 15000, description: "Training workshop fees", category: "Education", sectorId: "edu-sector", paymentMethod: "Direct Deposit", vatAmount: 1957, status: "PENDING", synced: false, occurredAt: d(0) },
+  { id: "t12", type: "EXPENSE", amount: 4500, description: "Office supplies", category: "Office", sectorId: null, paymentMethod: "Card Payment", vatAmount: 0, status: "COMPLETED", synced: true, occurredAt: d(11) }
 ];
 
 export const MOCK_EMPLOYEES: Employee[] = [
@@ -216,9 +216,9 @@ export const MOCK_INVOICES: Invoice[] = [
 ];
 
 export const MOCK_RECEIPTS: Receipt[] = [
-  { id: "rec1", receiptNumber: "REC-2025-001", payerName: "Kebede Trading Co.", amount: 97750, paymentMethod: "CBE Transfer", issuedAt: d(5) },
-  { id: "rec2", receiptNumber: "REC-2025-002", payerName: "Walk-in Customer", amount: 4500, paymentMethod: "Cash", issuedAt: d(3) },
-  { id: "rec3", receiptNumber: "REC-2025-003", payerName: "Bole Hotel Group", amount: 20000, paymentMethod: "Telebirr", issuedAt: d(1) }
+  { id: "rec1", receiptNumber: "REC-2025-001", payerName: "Kebede Trading Co.", amount: 97750, paymentMethod: "Direct Deposit", issuedAt: d(5) },
+  { id: "rec2", receiptNumber: "REC-2025-002", payerName: "Walk-in Customer", amount: 4500, paymentMethod: "Card Payment", issuedAt: d(3) },
+  { id: "rec3", receiptNumber: "REC-2025-003", payerName: "Bole Hotel Group", amount: 20000, paymentMethod: "Card Payment", issuedAt: d(1) }
 ];
 
 export const MOCK_EXPENSE_APPROVALS: ExpenseApproval[] = [
@@ -385,6 +385,23 @@ export async function mockFetch<T>(path: string, init?: RequestInit): Promise<T>
   }
   if (path.includes("/api/auth/forgot-password")) return { message: "If that email exists, a reset code was sent" } as T;
   if (path.includes("/api/auth/reset-password")) return { message: "Password reset successful. You can now sign in." } as T;
+  if (path.includes("/api/auth/register")) {
+    const fullName = body?.fullName ?? "New User";
+    const email = body?.email ?? "user@beyonderp.demo";
+    const companyName = body?.companyName ?? "My Company";
+    const sectorId = body?.sectorId ?? "retail-trading";
+    setMockProfile(sectorId, companyName);
+    return {
+      token: `token-${Date.now()}`,
+      user: {
+        ...MOCK_USER,
+        fullName,
+        email,
+        companyName,
+        companySectorId: sectorId
+      }
+    } as T;
+  }
   if (path.includes("/api/auth/login")) {
     const companySectorId = getMockSectorId();
     const companyName = getMockCompanyName();

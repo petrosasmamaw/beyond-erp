@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownRight, ArrowUpRight, Plus, Smartphone, TrendingUp } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, CreditCard, Plus, TrendingUp } from "lucide-react";
 import { formatCurrency } from "@/lib/format";
 import type { Dashboard, Transaction } from "@/lib/types";
 import { t, type SectorDefinition } from "../config";
@@ -108,10 +108,10 @@ export function DashboardView({
             <Plus size={13} /> {t("addTransaction", language)}
           </button>
           <button
-            onClick={openTelebirrModal}
-            style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 13px", borderRadius: 8, border: `1px solid ${border}`, background: surface, color: ink, fontWeight: 600, fontSize: 13, cursor: "pointer" }}
+            onClick={() => openTransactionModal()}
+            style={{ display: "flex", alignItems: "center", gap: 6, padding: "6px 13px", borderRadius: 8, border: `1.5px solid ${border}`, background: surface, color: ink, fontWeight: 600, fontSize: 13, cursor: "pointer" }}
           >
-            <Smartphone size={13} /> Telebirr
+            <CreditCard size={13} color="#2563eb" /> Card Payment
           </button>
         </div>
       </div>
@@ -144,6 +144,7 @@ export function DashboardView({
         ))}
       </div>
 
+
       {/* ── Chart + Sector tools ── */}
       <div style={{ display: "grid", gridTemplateColumns: "1fr 260px", gap: 12 }} className="chart-tools-grid">
 
@@ -155,7 +156,7 @@ export function DashboardView({
               <h3 style={{ margin: "3px 0 0", fontSize: 15, fontWeight: 700, color: ink }}>12-month overview</h3>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "4px 9px", borderRadius: 6, background: dark ? "#0c1424" : "#eff6ff", color: "#2563eb", fontSize: 11, fontWeight: 700 }}>
-              <TrendingUp size={11} /> ETB
+              <TrendingUp size={11} /> CAD
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "flex-end", gap: 5, height: 96 }}>

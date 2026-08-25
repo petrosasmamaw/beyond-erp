@@ -53,10 +53,10 @@ export function Billing() {
   const insurancePending = bills.filter((b) => b.status === "Insurance").reduce((s, b) => s + (b.totalAmount - b.paidAmount), 0);
 
   const kpis = [
-    { label: "Total Billed",       value: `ETB ${totalBilled.toLocaleString()}`,       color: "#2563eb", bg: c.dark ? "#08121e" : "#eff6ff", bdr: c.dark ? "#142338" : "#bfdbfe", icon: "fa-solid fa-file-invoice" },
-    { label: "Collected",          value: `ETB ${totalCollected.toLocaleString()}`,     color: "#10b981", bg: c.dark ? "#071812" : "#f0fdf4", bdr: c.dark ? "#0f2e1e" : "#bbf7d0", icon: "fa-solid fa-circle-check" },
-    { label: "Outstanding",        value: `ETB ${totalOutstanding.toLocaleString()}`,   color: "#f59e0b", bg: c.dark ? "#150f02" : "#fffbeb", bdr: c.dark ? "#2e2008" : "#fde68a", icon: "fa-solid fa-clock" },
-    { label: "Insurance Pending",  value: `ETB ${insurancePending.toLocaleString()}`,   color: "#8b5cf6", bg: c.dark ? "#110b24" : "#f5f3ff", bdr: c.dark ? "#241852" : "#ddd6fe", icon: "fa-solid fa-shield-halved" },
+    { label: "Total Billed",       value: `CAD ${totalBilled.toLocaleString()}`,       color: "#2563eb", bg: c.dark ? "#08121e" : "#eff6ff", bdr: c.dark ? "#142338" : "#bfdbfe", icon: "fa-solid fa-file-invoice" },
+    { label: "Collected",          value: `CAD ${totalCollected.toLocaleString()}`,     color: "#10b981", bg: c.dark ? "#071812" : "#f0fdf4", bdr: c.dark ? "#0f2e1e" : "#bbf7d0", icon: "fa-solid fa-circle-check" },
+    { label: "Outstanding",        value: `CAD ${totalOutstanding.toLocaleString()}`,   color: "#f59e0b", bg: c.dark ? "#150f02" : "#fffbeb", bdr: c.dark ? "#2e2008" : "#fde68a", icon: "fa-solid fa-clock" },
+    { label: "Insurance Pending",  value: `CAD ${insurancePending.toLocaleString()}`,   color: "#8b5cf6", bg: c.dark ? "#110b24" : "#f5f3ff", bdr: c.dark ? "#241852" : "#ddd6fe", icon: "fa-solid fa-shield-halved" },
   ];
 
   const handlePay = () => {
@@ -175,9 +175,9 @@ export function Billing() {
                   <div style={{ fontSize: 11, color: c.muted, marginTop: 2 }}>{b.services.join(" · ")} · {b.date}</div>
                   {b.insuranceProvider && <div style={{ fontSize: 11, color: c.muted, marginTop: 1 }}>Insurance: {b.insuranceProvider}</div>}
                   <div style={{ display: "flex", gap: 14, marginTop: 5, fontSize: 12 }}>
-                    <span style={{ color: c.ink }}>Total: <strong>ETB {b.totalAmount.toLocaleString()}</strong></span>
-                    <span style={{ color: "#10b981" }}>Paid: ETB {b.paidAmount.toLocaleString()}</span>
-                    {balance > 0 && <span style={{ color: "#f43f5e" }}>Balance: ETB {balance.toLocaleString()}</span>}
+                    <span style={{ color: c.ink }}>Total: <strong>CAD {b.totalAmount.toLocaleString()}</strong></span>
+                    <span style={{ color: "#10b981" }}>Paid: CAD {b.paidAmount.toLocaleString()}</span>
+                    {balance > 0 && <span style={{ color: "#f43f5e" }}>Balance: CAD {balance.toLocaleString()}</span>}
                   </div>
                 </div>
                 {b.status !== "Paid" && b.status !== "Waived" && b.status !== "Insurance" && (
@@ -199,9 +199,9 @@ export function Billing() {
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             <div style={{ padding: "10px 12px", borderRadius: 8, background: c.alt, border: `1px solid ${c.border}` }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: c.ink }}>{payModal.billNumber} — {payModal.patientName}</div>
-              <div style={{ fontSize: 11, color: c.muted, marginTop: 2 }}>Outstanding: ETB {(payModal.totalAmount - payModal.paidAmount).toLocaleString()}</div>
+              <div style={{ fontSize: 11, color: c.muted, marginTop: 2 }}>Outstanding: CAD {(payModal.totalAmount - payModal.paidAmount).toLocaleString()}</div>
             </div>
-            <label style={lbl(c)}>Amount Received (ETB) *<input type="number" min="0" style={{ height: 36, width: "100%", borderRadius: 8, border: `1px solid ${c.border}`, background: c.alt, padding: "0 10px", color: c.ink, fontSize: 13, outline: "none", boxSizing: "border-box" as const }} value={payAmount} onChange={(e) => setPayAmount(e.target.value)} /></label>
+            <label style={lbl(c)}>Amount Received (CAD) *<input type="number" min="0" style={{ height: 36, width: "100%", borderRadius: 8, border: `1px solid ${c.border}`, background: c.alt, padding: "0 10px", color: c.ink, fontSize: 13, outline: "none", boxSizing: "border-box" as const }} value={payAmount} onChange={(e) => setPayAmount(e.target.value)} /></label>
             <label style={lbl(c)}>Payment Method<select style={{ height: 36, width: "100%", borderRadius: 8, border: `1px solid ${c.border}`, background: c.alt, padding: "0 10px", color: c.ink, fontSize: 13, outline: "none", boxSizing: "border-box" as const }} value={payMethod} onChange={(e) => setPayMethod(e.target.value)}>{PAYMENT_METHODS.map((m) => <option key={m}>{m}</option>)}</select></label>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 4 }}>
               <button type="button" onClick={() => setPayModal(null)} style={{ height: 36, borderRadius: 8, border: `1px solid ${c.border}`, background: c.surface, color: c.ink, fontSize: 13, fontWeight: 600, cursor: "pointer" }}>Cancel</button>
@@ -234,7 +234,7 @@ export function Billing() {
               })}
             </div>
           </div>
-          <label style={lbl(c)}>Total Amount (ETB) *<input type="number" min="0" style={inp} value={form.totalAmount} onChange={(e) => setForm((f) => ({ ...f, totalAmount: e.target.value }))} /></label>
+          <label style={lbl(c)}>Total Amount (CAD) *<input type="number" min="0" style={inp} value={form.totalAmount} onChange={(e) => setForm((f) => ({ ...f, totalAmount: e.target.value }))} /></label>
           <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, fontWeight: 600, color: c.ink, cursor: "pointer" }}>
             <input type="checkbox" checked={form.isInsurance} onChange={(e) => setForm((f) => ({ ...f, isInsurance: e.target.checked }))} />
             Insurance Claim

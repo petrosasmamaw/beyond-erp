@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import { t, type LangKey, type SectorDefinition } from "@/features/erp/config";
 import { getSectorConfig } from "@/features/sectors";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -10,6 +10,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 
 const UNIVERSAL_TOP: { path: string; labelKey: LangKey; icon: string }[] = [
   { path: "/dashboard", labelKey: "home", icon: "fa-solid fa-chart-pie" },
+  { path: "/crm", labelKey: "crm", icon: "fa-solid fa-address-book" },
   { path: "/transactions", labelKey: "money", icon: "fa-solid fa-money-bill-transfer" },
   { path: "/employees", labelKey: "team", icon: "fa-solid fa-users" },
 ];
@@ -28,6 +29,7 @@ export function Sidebar({
   pendingCount,
   collapsed,
   onToggle,
+  onOpenAI,
 }: {
   language?: string;
   sector: SectorDefinition;
@@ -35,6 +37,7 @@ export function Sidebar({
   pendingCount: number;
   collapsed: boolean;
   onToggle: () => void;
+  onOpenAI: () => void;
 }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -189,26 +192,12 @@ export function Sidebar({
         }}
       >
         {!collapsed && (
-          <div style={{ display: "flex", alignItems: "center", gap: 9, minWidth: 0 }}>
-            <div
-              style={{
-                width: 28,
-                height: 28,
-                borderRadius: 7,
-                background: "#2563eb",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-              }}
-            >
-              <span style={{ fontFamily: "Georgia, serif", fontSize: 14, fontStyle: "italic", color: "white", lineHeight: 1 }}>ß</span>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
+            <div style={{ fontWeight: 800, fontSize: 18, color: text, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+              BeyondERP
             </div>
-            <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 12.5, fontWeight: 700, color: text, lineHeight: 1.2 }}>Beyond ERP</div>
-              <div style={{ fontSize: 11, color: muted, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", maxWidth: 134 }}>
-                {companyName}
-              </div>
+            <div style={{ fontSize: 11, color: muted, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", maxWidth: 160 }}>
+              {companyName}
             </div>
           </div>
         )}
@@ -216,10 +205,10 @@ export function Sidebar({
           <div
             style={{
               width: 28, height: 28, borderRadius: 7, background: "#2563eb",
-              display: "flex", alignItems: "center", justifyContent: "center",
+              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "white"
             }}
           >
-            <span style={{ fontFamily: "Georgia, serif", fontSize: 14, fontStyle: "italic", color: "white", lineHeight: 1 }}>ß</span>
+            BE
           </div>
         )}
         <button
@@ -400,6 +389,37 @@ export function Sidebar({
             )}
           </>
         )}
+
+        <div style={{ height: 1, background: border, margin: "4px 6px" }} />
+        <button
+          onClick={onOpenAI}
+          title={collapsed ? "AI Copilot" : undefined}
+          style={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            gap: collapsed ? 0 : 10,
+            padding: "0 10px",
+            justifyContent: collapsed ? "center" : "flex-start",
+            minHeight: 40,
+            border: 0,
+            borderRadius: 9,
+            background: "rgba(37,99,235,0.12)",
+            color: "#60a5fa",
+            fontWeight: 700,
+            fontSize: 13,
+            cursor: "pointer",
+            textAlign: "left",
+            flexShrink: 0,
+          }}
+        >
+          <Sparkles size={14} style={{ flexShrink: 0, width: 17, textAlign: "center", color: "#60a5fa" }} />
+          {!collapsed && (
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
+              AI Copilot
+            </span>
+          )}
+        </button>
 
         <div style={{ height: 1, background: border, margin: "4px 6px" }} />
         {UNIVERSAL_BOTTOM.map((item) => (

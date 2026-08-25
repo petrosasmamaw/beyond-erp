@@ -74,6 +74,11 @@ export const api = {
       method: "POST",
       body: JSON.stringify(input)
     }),
+  register: (input: { fullName: string; email: string; password: string; companyName?: string; sectorId?: string; phone?: string; tinNumber?: string }) =>
+    apiFetch<AuthResponse>("/api/auth/register", {
+      method: "POST",
+      body: JSON.stringify(input)
+    }),
   me: () => apiFetch<{ user: User }>("/api/auth/me"),
   dashboard: () => apiFetch<Dashboard>("/api/dashboard"),
   sectors: () => apiFetch<Sector[]>("/api/sectors"),

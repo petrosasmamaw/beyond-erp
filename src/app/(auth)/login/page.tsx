@@ -2,12 +2,13 @@
 
 import { type FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight, Eye, EyeOff, Languages, Loader2, ShieldCheck, Wifi } from "lucide-react";
+import { ArrowRight, Eye, EyeOff, Languages, Loader2, ShieldCheck, Wifi, Briefcase, X } from "lucide-react";
 import { api } from "@/lib/api";
 import { useAuth } from "@/contexts/AuthContext";
 import { useApp } from "@/contexts/AppContext";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTheme } from "@/contexts/ThemeContext";
+import { sectorDefinitions } from "@/features/erp/config";
 
 export default function LoginPage() {
   const { user, login } = useAuth();
@@ -19,6 +20,12 @@ export default function LoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [showPw, setShowPw] = useState(false);
+
+  // Guest personalization modal state
+  const [showGuestModal, setShowGuestModal] = useState(false);
+  const [guestFullName, setGuestFullName] = useState("Your Name");
+  const [guestCompanyName, setGuestCompanyName] = useState("Your Business LLC");
+  const [guestSectorId, setGuestSectorId] = useState("retail-trading");
 
   useEffect(() => {
     if (user) router.replace("/dashboard");
@@ -36,6 +43,31 @@ export default function LoginPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleGuestLaunch = (e: FormEvent) => {
+    e.preventDefault();
+    if (!guestFullName.trim() || !guestCompanyName.trim()) {
+      showToast("Please enter your full name and company name");
+      return;
+    }
+
+    login("guest-token-123", {
+      id: "user-guest-1",
+      fullName: guestFullName.trim(),
+      email: "guest@beyonderp.demo",
+      phone: "+251911234567",
+      companyName: guestCompanyName.trim(),
+      companySectorId: guestSectorId,
+      role: "OWNER",
+      permissions: ["View", "Transactions", "Employees", "Finance", "Reports", "Users", "Settings", "Audit", "Compliance"],
+      effectivePermissions: ["View", "Transactions", "Employees", "Finance", "Reports", "Users", "Settings", "Audit", "Compliance"],
+      status: "ACTIVE",
+      lastLoginAt: new Date().toISOString(),
+      createdAt: new Date().toISOString()
+    });
+    showToast(`Welcome, ${guestFullName.trim()}! Workspace personalized for ${guestCompanyName.trim()}.`);
+    router.push("/dashboard");
   };
 
   const bg = dark ? "#080e19" : "#f5f8ff";
@@ -70,16 +102,13 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.2)" }}>
-            <span aria-hidden="true" style={{ width: 24, height: 24, display: "block", background: 'url("/beyond.ico") center / contain no-repeat' }} />
-          </div>
-          <span style={{ fontWeight: 700, fontSize: 15, color: "white" }}>Beyond ERP</span>
+          <span style={{ fontWeight: 800, fontSize: 18, color: "white", letterSpacing: "-0.02em" }}>BeyondERP</span>
         </div>
 
         {/* Hero copy */}
         <div style={{ position: "relative" }}>
           <p style={{ margin: "0 0 20px", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.14em", color: "rgba(191,219,254,0.7)" }}>
-            Canadian Enterprise Suite
+            Enterprise Resource Planning
           </p>
           <h1 style={{ margin: 0, fontFamily: '"Instrument Serif", Georgia, serif', fontSize: "clamp(34px, 3.5vw, 54px)", lineHeight: 1.02, color: "white", fontWeight: 400, letterSpacing: "-0.01em" }}>
             The operating<br />system for<br />
@@ -87,9 +116,9 @@ export default function LoginPage() {
           </h1>
           <div style={{ marginTop: 36, display: "flex", flexDirection: "column", gap: 14 }}>
             {([
-              { icon: <ShieldCheck size={14} />, label: "CRA compliant . GST/HST/PST built in" },
+              { icon: <ShieldCheck size={14} />, label: "Tax compliant · Automated reporting" },
               { icon: <Wifi size={14} />, label: "Offline first capability" },
-              { icon: <Languages size={14} />, label: "English . French (Canada)" },
+              { icon: <Languages size={14} />, label: "English · French (Canada)" },
             ] as const).map(({ icon, label }) => (
               <div key={label} style={{ display: "flex", alignItems: "center", gap: 10, color: "rgba(219,234,254,0.85)", fontSize: 14 }}>
                 <span style={{ color: "#93c5fd", flexShrink: 0 }}>{icon}</span>
@@ -101,7 +130,7 @@ export default function LoginPage() {
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
           <p style={{ margin: 0, fontSize: 11, color: "rgba(148,163,184,0.5)" }}>
-            (c) {new Date().getFullYear()} Beyond ERP Canada
+            &copy; {new Date().getFullYear()} BeyondERP
           </p>
           <p style={{ margin: 0, fontSize: 11, color: "rgba(148,163,184,0.7)" }}>
             Developed by <a href="https://beyond.et" target="_blank" rel="noopener noreferrer" style={{ color: "#93c5fd", textDecoration: "underline" }}>beyond.et</a>
@@ -116,10 +145,7 @@ export default function LoginPage() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 28px" }}>
           {/* Mobile-only logo */}
           <div className="login-mobile-logo" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 8, background: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span aria-hidden="true" style={{ width: 18, height: 18, display: "block", background: 'url("/beyond.ico") center / contain no-repeat' }} />
-            </div>
-            <span style={{ fontWeight: 700, fontSize: 14, color: ink }}>Beyond ERP</span>
+            <span style={{ fontWeight: 800, fontSize: 16, color: ink, letterSpacing: "-0.02em" }}>BeyondERP</span>
           </div>
           <ThemeToggle />
         </div>
@@ -205,6 +231,20 @@ export default function LoginPage() {
                 {loading ? "Signing in…" : "Sign in"}
                 {!loading && <ArrowRight size={16} />}
               </button>
+
+              <button
+                type="button"
+                onClick={() => setShowGuestModal(true)}
+                style={{
+                  height: 46, borderRadius: 10, border: `1.5px solid #2563eb`, marginTop: 2,
+                  background: dark ? "rgba(37,99,235,0.15)" : "#eff6ff",
+                  color: dark ? "#93c5fd" : "#1d4ed8", fontWeight: 700, fontSize: 14,
+                  cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  transition: "background 0.15s",
+                }}
+              >
+                ⚡ Quick Preview / Guest Access
+              </button>
             </form>
 
             {/* Divider */}
@@ -247,6 +287,129 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+
+      {/* Guest Personalization Modal */}
+      {showGuestModal && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 1000,
+          background: "rgba(15, 23, 42, 0.65)", backdropFilter: "blur(6px)",
+          display: "flex", alignItems: "center", justifyContent: "center", padding: 20
+        }}>
+          <div style={{
+            background: surface, border: `1px solid ${border}`, borderRadius: 16,
+            width: "100%", maxWidth: 580, maxHeight: "90vh", overflowY: "auto",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35)", padding: 32,
+            display: "flex", flexDirection: "column", gap: 24
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "between" }}>
+              <div>
+                <p style={{ margin: "0 0 4px", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2563eb" }}>
+                  Guest Setup
+                </p>
+                <h3 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: ink }}>
+                  Personalize Your Guest Workspace
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowGuestModal(false)}
+                style={{ background: "none", border: "none", cursor: "pointer", color: muted, padding: 6 }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <form onSubmit={handleGuestLaunch} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                <label style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, fontWeight: 600, color: ink }}>
+                  Your Full Name
+                  <input
+                    value={guestFullName}
+                    onChange={(e) => setGuestFullName(e.target.value)}
+                    required
+                    placeholder="Your Name"
+                    style={{
+                      height: 42, width: "100%", borderRadius: 8, border: `1.5px solid ${border}`,
+                      background: inputBg, padding: "0 12px", color: ink, fontSize: 14, outline: "none"
+                    }}
+                  />
+                </label>
+
+                <label style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, fontWeight: 600, color: ink }}>
+                  Company Name
+                  <input
+                    value={guestCompanyName}
+                    onChange={(e) => setGuestCompanyName(e.target.value)}
+                    required
+                    placeholder="Your Business LLC"
+                    style={{
+                      height: 42, width: "100%", borderRadius: 8, border: `1.5px solid ${border}`,
+                      background: inputBg, padding: "0 12px", color: ink, fontSize: 14, outline: "none"
+                    }}
+                  />
+                </label>
+              </div>
+
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                <label style={{ fontSize: 13, fontWeight: 600, color: ink }}>
+                  Select Operating Sector
+                </label>
+                <div style={{
+                  display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10,
+                  maxHeight: 220, overflowY: "auto", paddingRight: 4
+                }}>
+                  {sectorDefinitions.map((sec) => {
+                    const isSelected = guestSectorId === sec.id;
+                    return (
+                      <button
+                        type="button"
+                        key={sec.id}
+                        onClick={() => setGuestSectorId(sec.id)}
+                        style={{
+                          textAlign: "left", padding: "10px 12px", borderRadius: 10,
+                          border: `2px solid ${isSelected ? "#2563eb" : border}`,
+                          background: isSelected ? (dark ? "rgba(37,99,235,0.2)" : "#eff6ff") : inputBg,
+                          cursor: "pointer", display: "flex", flexDirection: "column", gap: 4, transition: "all 0.15s"
+                        }}
+                      >
+                        <span style={{ color: sec.color, fontSize: 16 }}>
+                          <i className={sec.icon} />
+                        </span>
+                        <strong style={{ fontSize: 13, color: ink }}>{sec.name}</strong>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div style={{ display: "flex", justifyContent: "flex-end", gap: 10, marginTop: 8 }}>
+                <button
+                  type="button"
+                  onClick={() => setShowGuestModal(false)}
+                  style={{
+                    height: 42, padding: "0 18px", borderRadius: 8, border: `1px solid ${border}`,
+                    background: "none", color: ink, fontWeight: 600, fontSize: 14, cursor: "pointer"
+                  }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  style={{
+                    height: 42, padding: "0 22px", borderRadius: 8, border: 0,
+                    background: "linear-gradient(135deg, #2563eb, #1d4ed8)", color: "white",
+                    fontWeight: 700, fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", gap: 8,
+                    boxShadow: "0 4px 12px rgba(37,99,235,0.3)"
+                  }}
+                >
+                  Launch Personalized Workspace
+                  <ArrowRight size={16} />
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       {toast ? <div className="toast">{toast}</div> : null}
     </main>

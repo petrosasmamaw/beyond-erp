@@ -153,8 +153,8 @@ function PasswordGate({ onUnlock }: { onUnlock: () => void }) {
             <Shield size={22} color="white" />
           </div>
           <div>
-            <p style={{ margin: 0, fontSize: 11, fontWeight: 700, color: S.muted, textTransform: "uppercase", letterSpacing: "0.12em" }}>Beyond ERP</p>
-            <strong style={{ color: S.white, fontSize: 18 }}>Admin Console</strong>
+            <span style={{ fontWeight: 800, fontSize: 16, color: S.white, letterSpacing: "-0.02em" }}>BeyondERP</span>
+            <strong style={{ display: "block", color: S.white, fontSize: 18, fontWeight: 700 }}>Admin Console</strong>
           </div>
         </div>
 
@@ -277,7 +277,7 @@ export default function SuperAdminPage() {
               <Shield size={16} color="white" />
             </div>
             <div>
-              <strong style={{ display: "block", fontSize: 14, color: S.white, lineHeight: 1.2 }}>Beyond ERP</strong>
+              <strong style={{ display: "block", fontSize: 14, color: S.white, lineHeight: 1.2, letterSpacing: "-0.02em" }}>BeyondERP</strong>
               <span style={{ fontSize: 10, color: S.muted, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Admin Console</span>
             </div>
           </div>
@@ -378,8 +378,8 @@ export default function SuperAdminPage() {
               {/* KPI row */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
                 {[
-                  { label: "Monthly Recurring Rev.", value: `ETB ${mrr.toLocaleString()}`, sub: "+12% vs last month", trend: "up", icon: <TrendingUp size={18} />, accent: "#3b82f6" },
-                  { label: "Annual Run Rate", value: `ETB ${(arr / 1000).toFixed(0)}K`, sub: `${activeCompanies} active tenants`, trend: "up", icon: <BarChart2 size={18} />, accent: "#8b5cf6" },
+                  { label: "Monthly Recurring Rev.", value: `CAD ${mrr.toLocaleString()}`, sub: "+12% vs last month", trend: "up", icon: <TrendingUp size={18} />, accent: "#3b82f6" },
+                  { label: "Annual Run Rate", value: `CAD ${(arr / 1000).toFixed(0)}K`, sub: `${activeCompanies} active tenants`, trend: "up", icon: <BarChart2 size={18} />, accent: "#8b5cf6" },
                   { label: "Active Companies", value: activeCompanies, sub: `${companies.filter(c => c.status === "Trial").length} in trial`, trend: "up", icon: <Building2 size={18} />, accent: "#10b981" },
                   { label: "Pending Approvals", value: pendingReqs, sub: "Paid, awaiting review", trend: pendingReqs > 0 ? "warn" : "up", icon: <Clock size={18} />, accent: pendingReqs > 0 ? "#f59e0b" : "#10b981" },
                 ].map((s) => (
@@ -405,7 +405,7 @@ export default function SuperAdminPage() {
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
                     <div>
                       <p style={{ margin: "0 0 2px", fontSize: 12, fontWeight: 700, color: S.muted, textTransform: "uppercase", letterSpacing: "0.08em" }}>Revenue Trend</p>
-                      <strong style={{ fontSize: 18, color: S.white }}>ETB {mrr.toLocaleString()} <span style={{ fontSize: 13, color: "#4ade80", fontWeight: 600 }}>↑ 12%</span></strong>
+                      <strong style={{ fontSize: 18, color: S.white }}>CAD {mrr.toLocaleString()} <span style={{ fontSize: 13, color: "#4ade80", fontWeight: 600 }}>↑ 12%</span></strong>
                     </div>
                     <Pill label="12 Months" color="#3b82f6" />
                   </div>
@@ -448,7 +448,7 @@ export default function SuperAdminPage() {
                   <div style={{ borderTop: `1px solid ${S.border}`, paddingTop: 14, marginTop: 4 }}>
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                       <span style={{ fontSize: 12, color: S.muted }}>Total MRR</span>
-                      <strong style={{ fontSize: 14, color: "#4ade80" }}>ETB {mrr.toLocaleString()}</strong>
+                      <strong style={{ fontSize: 14, color: "#4ade80" }}>CAD {mrr.toLocaleString()}</strong>
                     </div>
                   </div>
                 </div>
@@ -530,7 +530,7 @@ export default function SuperAdminPage() {
               {/* Stats strip */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 10 }}>
                 {[
-                  { label: "Total Collected", value: `ETB ${(totalCollected / 1000).toFixed(0)}K`, color: "#4ade80" },
+                  { label: "Total Collected", value: `CAD ${(totalCollected / 1000).toFixed(0)}K`, color: "#4ade80" },
                   { label: "Enterprise Clients", value: companies.filter(c => c.plan === "Enterprise").length, color: "#a78bfa" },
                   { label: "Growth Clients", value: companies.filter(c => c.plan === "Growth").length, color: "#60a5fa" },
                   { label: "Starter Clients", value: companies.filter(c => c.plan === "Starter").length, color: "#94a3b8" },
@@ -661,7 +661,7 @@ export default function SuperAdminPage() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div>
                   <h1 style={{ margin: "0 0 4px", fontSize: 22, color: S.white, fontWeight: 800 }}>Companies</h1>
-                  <p style={{ margin: 0, fontSize: 13, color: S.muted }}>{filteredCompanies.length} tenants · ETB {mrr.toLocaleString()} MRR</p>
+                  <p style={{ margin: 0, fontSize: 13, color: S.muted }}>{filteredCompanies.length} tenants · CAD {mrr.toLocaleString()} MRR</p>
                 </div>
                 <div style={{ display: "flex", gap: 8 }}>
                   <select value={coFilter} onChange={(e) => setCoFilter(e.target.value as typeof coFilter)} style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 8, padding: "8px 12px", color: S.text, fontSize: 12, cursor: "pointer", outline: "none" }}>
@@ -687,7 +687,7 @@ export default function SuperAdminPage() {
                         <strong style={{ fontSize: 15, color: PLAN_COLOR[plan] }}>{plan}</strong>
                         <span style={{ fontSize: 12, color: S.muted }}>{cos.length} active</span>
                       </div>
-                      <p style={{ margin: "0 0 2px", fontSize: 20, color: S.white, fontWeight: 800 }}>ETB {rev.toLocaleString()}</p>
+                      <p style={{ margin: "0 0 2px", fontSize: 20, color: S.white, fontWeight: 800 }}>CAD {rev.toLocaleString()}</p>
                       <p style={{ margin: 0, fontSize: 11, color: S.muted }}>per month</p>
                     </div>
                   );
@@ -731,7 +731,7 @@ export default function SuperAdminPage() {
                             </td>
                             <td style={{ padding: "13px 16px" }}><Pill label={c.plan} color={PLAN_COLOR[c.plan]} /></td>
                             <td style={{ padding: "13px 16px" }}>
-                              <span style={{ fontSize: 13, color: "#4ade80", fontWeight: 700 }}>ETB {c.monthlyFee.toLocaleString()}</span>
+                              <span style={{ fontSize: 13, color: "#4ade80", fontWeight: 700 }}>CAD {c.monthlyFee.toLocaleString()}</span>
                             </td>
                             <td style={{ padding: "13px 16px" }}>
                               <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
@@ -761,13 +761,13 @@ export default function SuperAdminPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               <div>
                 <h1 style={{ margin: "0 0 4px", fontSize: 22, color: S.white, fontWeight: 800 }}>Payments</h1>
-                <p style={{ margin: 0, fontSize: 13, color: S.muted }}>{mockPayments.length} records · ETB {totalCollected.toLocaleString()} total collected</p>
+                <p style={{ margin: 0, fontSize: 13, color: S.muted }}>{mockPayments.length} records · CAD {totalCollected.toLocaleString()} total collected</p>
               </div>
 
               {/* Payment summary */}
               <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 12 }}>
                 {[
-                  { label: "Total Collected", value: `ETB ${totalCollected.toLocaleString()}`, color: "#4ade80" },
+                  { label: "Total Collected", value: `CAD ${totalCollected.toLocaleString()}`, color: "#4ade80" },
                   { label: "Confirmed", value: mockPayments.filter(p => p.status === "Confirmed").length, color: "#10b981" },
                   { label: "Pending", value: mockPayments.filter(p => p.status === "Pending").length, color: "#f59e0b" },
                   { label: "Failed", value: mockPayments.filter(p => p.status === "Failed").length, color: "#ef4444" },
@@ -801,7 +801,7 @@ export default function SuperAdminPage() {
                         <tr key={p.id} style={{ borderTop: `1px solid ${S.border}`, background: i % 2 === 1 ? S.bg + "44" : "transparent" }}>
                           <td style={{ padding: "11px 14px", color: S.white, fontWeight: 600 }}>{p.companyName}</td>
                           <td style={{ padding: "11px 14px" }}><Pill label={p.plan} color={PLAN_COLOR[p.plan]} /></td>
-                          <td style={{ padding: "11px 14px", color: "#4ade80", fontWeight: 700 }}>ETB {p.amount.toLocaleString()}</td>
+                          <td style={{ padding: "11px 14px", color: "#4ade80", fontWeight: 700 }}>CAD {p.amount.toLocaleString()}</td>
                           <td style={{ padding: "11px 14px", color: S.sub }}>{p.method}</td>
                           <td style={{ padding: "11px 14px", color: S.muted }}>{p.period}</td>
                           <td style={{ padding: "11px 14px", color: S.muted }}>{p.date}</td>
@@ -841,7 +841,7 @@ export default function SuperAdminPage() {
                             <span style={{ width: 8, height: 8, borderRadius: 2, background: PLAN_COLOR[plan], display: "block" }} />
                             <span style={{ fontSize: 13, color: S.sub }}>{plan}</span>
                           </div>
-                          <strong style={{ fontSize: 13, color: S.text }}>ETB {total.toLocaleString()}</strong>
+                          <strong style={{ fontSize: 13, color: S.text }}>CAD {total.toLocaleString()}</strong>
                         </div>
                       );
                     })}
@@ -863,7 +863,7 @@ export default function SuperAdminPage() {
                 {/* MRR growth chart - full */}
                 <div style={{ background: S.card, border: `1px solid ${S.border}`, borderRadius: 14, padding: "24px" }}>
                   <p style={{ margin: "0 0 4px", fontSize: 12, fontWeight: 700, color: S.muted, textTransform: "uppercase", letterSpacing: "0.08em" }}>MRR Growth</p>
-                  <p style={{ margin: "0 0 24px", fontSize: 22, color: S.white, fontWeight: 800 }}>ETB {mrr.toLocaleString()} <span style={{ fontSize: 14, color: "#4ade80" }}>+141% YoY</span></p>
+                  <p style={{ margin: "0 0 24px", fontSize: 22, color: S.white, fontWeight: 800 }}>CAD {mrr.toLocaleString()} <span style={{ fontSize: 14, color: "#4ade80" }}>+141% YoY</span></p>
                   <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height: 140 }}>
                     {MRR_TREND.map((v, i) => {
                       const pct = (v / maxMrr) * 100;
@@ -911,7 +911,7 @@ export default function SuperAdminPage() {
                           <span style={{ fontSize: 13, color: S.text }}>{plan}</span>
                         </div>
                         <div style={{ textAlign: "right" }}>
-                          <p style={{ margin: 0, fontSize: 13, color: S.white, fontWeight: 700 }}>ETB {cos.length > 0 ? Math.round(rev / cos.length).toLocaleString() : 0}</p>
+                          <p style={{ margin: 0, fontSize: 13, color: S.white, fontWeight: 700 }}>CAD {cos.length > 0 ? Math.round(rev / cos.length).toLocaleString() : 0}</p>
                           <p style={{ margin: 0, fontSize: 10, color: S.muted }}>avg / tenant</p>
                         </div>
                       </div>
@@ -931,7 +931,7 @@ export default function SuperAdminPage() {
                           <i className={sector?.icon ?? "fa-solid fa-building"} style={{ color: sector?.color ?? "#64748b", fontSize: 11 }} />
                           <span style={{ fontSize: 12, color: S.sub }}>{sector?.shortName ?? sectorId}</span>
                         </div>
-                        <span style={{ fontSize: 12, color: "#4ade80", fontWeight: 700 }}>ETB {rev.toLocaleString()}</span>
+                        <span style={{ fontSize: 12, color: "#4ade80", fontWeight: 700 }}>CAD {rev.toLocaleString()}</span>
                       </div>
                     );
                   })}

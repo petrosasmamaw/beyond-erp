@@ -247,7 +247,7 @@ export function SectorDetail({
       </section>
       <section className="stat-grid three">
         <StatCard label={t("activeTask", language)} value={String(sector.workItems?.filter((i) => i.status !== "DONE").length ?? 0)} tone="green" />
-        <StatCard label={t("sectorRevenue", language)} value={sectorRevenue > 0 ? formatCurrency(sectorRevenue) : "ETB 0"} tone="gold" />
+        <StatCard label={t("sectorRevenue", language)} value={sectorRevenue > 0 ? formatCurrency(sectorRevenue) : "CAD 0"} tone="gold" />
         <StatCard label={t("pendingRecords", language)} value={String(sector.sectorRecords?.filter((r) => r.status === "PENDING").length ?? 0)} tone="red" />
       </section>
     </div>

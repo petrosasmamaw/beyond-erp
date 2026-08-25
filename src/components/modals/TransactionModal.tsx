@@ -138,7 +138,7 @@ export function TransactionModal() {
         {/* Amount + Date side by side */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
           <label style={lbl}>
-            Amount (ETB) *
+            Amount (CAD) *
             <div style={{ position: "relative" }}>
               <DollarSign size={13} style={{ position: "absolute", left: 11, top: "50%", transform: "translateY(-50%)", color: c.muted, pointerEvents: "none" }} />
               <input
@@ -208,7 +208,7 @@ export function TransactionModal() {
         {/* Payment method */}
         <div>
           <div style={{ fontSize: 12, fontWeight: 600, color: c.muted, marginBottom: 8 }}>Payment Method</div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 7 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 7 }}>
             {paymentMethodsWithIcons.map(({ method, icon }) => {
               const active = form.paymentMethod === method;
               return (
@@ -243,7 +243,7 @@ export function TransactionModal() {
           <div>
             <div style={{ fontSize: 13, fontWeight: 600, color: c.ink }}>Include VAT 15%</div>
             {form.vatAmount > 0 && (
-              <div style={{ fontSize: 11, color: "#10b981", marginTop: 1 }}>ETB {form.vatAmount.toFixed(2)} will be added</div>
+              <div style={{ fontSize: 11, color: "#10b981", marginTop: 1 }}>CAD {form.vatAmount.toFixed(2)} will be added</div>
             )}
           </div>
         </label>

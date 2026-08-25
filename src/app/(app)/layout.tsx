@@ -22,6 +22,7 @@ import { WorkItemModal } from "@/components/modals/WorkItemModal";
 import { SectorRecordModal } from "@/components/modals/SectorRecordModal";
 import { DomainWorkflowModal } from "@/components/modals/DomainWorkflowModal";
 import { FailedOpsModal } from "@/components/modals/FailedOpsModal";
+import { AIAssistantSidebar } from "@/components/AIAssistantSidebar";
 
 const SIDEBAR_KEY = "beyond_sidebar_collapsed";
 
@@ -35,6 +36,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [aiOpen, setAiOpen] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem(SIDEBAR_KEY);
@@ -85,8 +87,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
       <main className="splash-screen" aria-label="Loading">
         <div className="splash-card">
-          <div className="splash-logo"><i className="fa-solid fa-cube" /></div>
-          <h1>Beyond ERP</h1>
+          <h1 style={{ fontWeight: 800, fontSize: 24, letterSpacing: "-0.02em" }}>BeyondERP</h1>
           <p>Loading workspace…</p>
           <div className="splash-progress" aria-hidden="true"><span /></div>
         </div>
@@ -95,7 +96,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   }
 
   const language = settings?.language ?? "English";
-  const companyName = user.companyName ?? settings?.companyName ?? "Beyond ERP";
+  const companyName = user.companyName ?? settings?.companyName ?? "BeyondERP";
   const companySector = getSectorDefinition(user.companySectorId ?? settings?.companySectorId ?? "");
 
   return (
@@ -113,6 +114,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           pendingCount={pendingCount}
           collapsed={sidebarCollapsed}
           onToggle={toggleSidebar}
+          onOpenAI={() => setAiOpen(true)}
         />
 
         <div className="app-main-panel">
@@ -192,7 +194,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="print-header">
-            <h1>Beyond ERP Canada - {settings?.companyName ?? "Business Report"}</h1>
+            <h1>BeyondERP - {settings?.companyName ?? "Business Report"}</h1>
             <span>Business Number (BN): {settings?.tinNumber ?? "123456789 RT0001"} | Printed: {new Date().toISOString().slice(0, 10)}</span>
           </div>
 
@@ -217,6 +219,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <SectorRecordModal />
       <DomainWorkflowModal />
       <FailedOpsModal />
+      <AIAssistantSidebar isOpen={aiOpen} onClose={() => setAiOpen(false)} sectorName={companySector.name} />
     </main>
   );
 }

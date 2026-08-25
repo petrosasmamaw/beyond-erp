@@ -2,10 +2,11 @@
 
 import { type CSSProperties, type FormEvent, Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ArrowLeft, ArrowRight, Briefcase, Languages, Loader2, ShieldCheck, Wifi } from "lucide-react";
+import { ArrowLeft, ArrowRight, Briefcase, Languages, Loader2, ShieldCheck, Wifi, X } from "lucide-react";
 import { api } from "@/lib/api";
 import { getSectorDefinition } from "@/features/erp/config";
 import { useApp } from "@/contexts/AppContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useTheme } from "@/contexts/ThemeContext";
 
@@ -13,6 +14,7 @@ function RegisterDetailsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { toast, showToast } = useApp();
+  const { login } = useAuth();
   const { theme } = useTheme();
   const dark = theme === "dark";
 
@@ -25,11 +27,42 @@ function RegisterDetailsContent() {
     fullName: "",
     email: "",
     phone: "",
-    notes: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+
+  // Guest personalization modal state
+  const [showGuestModal, setShowGuestModal] = useState(false);
+  const [guestFullName, setGuestFullName] = useState("Your Name");
+  const [guestCompanyName, setGuestCompanyName] = useState("Your Business LLC");
+  const [guestSectorId, setGuestSectorId] = useState(sectorId || "retail-trading");
+
+  const handleGuestLaunch = (e: FormEvent) => {
+    e.preventDefault();
+    if (!guestFullName.trim() || !guestCompanyName.trim()) {
+      showToast("Please enter your full name and company name");
+      return;
+    }
+
+    login("guest-token-123", {
+      id: "user-guest-1",
+      fullName: guestFullName.trim(),
+      email: "guest@beyonderp.demo",
+      phone: "+251911234567",
+      companyName: guestCompanyName.trim(),
+      companySectorId: guestSectorId || sectorId || "retail-trading",
+      role: "OWNER",
+      permissions: ["View", "Transactions", "Employees", "Finance", "Reports", "Users", "Settings", "Audit", "Compliance"],
+      effectivePermissions: ["View", "Transactions", "Employees", "Finance", "Reports", "Users", "Settings", "Audit", "Compliance"],
+      status: "ACTIVE",
+      lastLoginAt: new Date().toISOString(),
+      createdAt: new Date().toISOString()
+    });
+    showToast(`Welcome, ${guestFullName.trim()}! Workspace personalized for ${guestCompanyName.trim()}.`);
+    router.push("/dashboard");
+  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,6 +71,7 @@ function RegisterDetailsContent() {
     if (!form.companyName.trim()) errs.companyName = "Company name is required";
     if (!form.fullName.trim()) errs.fullName = "Your full name is required";
     if (!form.email.trim()) errs.email = "Email is required";
+    if (!form.password || form.password.length < 6) errs.password = "Password must be at least 6 characters";
     if (!form.phone.trim()) errs.phone = "Phone number is required";
 
     if (Object.keys(errs).length) {
@@ -47,26 +81,21 @@ function RegisterDetailsContent() {
 
     setLoading(true);
     try {
-      await api.createRegistrationRequest({
+      const result = await api.register({
         companyName: form.companyName,
         tinNumber: form.tinNumber || undefined,
         sectorId,
         fullName: form.fullName,
         email: form.email,
         phone: form.phone,
-        notes: form.notes || undefined,
+        password: form.password,
       });
-      sessionStorage.setItem("beyond_reg", JSON.stringify({ ...form, sectorId }));
-      showToast("Registration request submitted");
-      router.push("/submitted");
+      login(result.token, result.user);
+      showToast(`Welcome, ${result.user.fullName}! Workspace ready.`);
+      router.push("/dashboard");
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Failed to submit";
-      if (msg.includes("already completed")) {
-        showToast("Company already set up - please sign in");
-        router.push("/login");
-      } else {
-        showToast(msg);
-      }
+      const msg = err instanceof Error ? err.message : "Registration failed";
+      showToast(msg);
     } finally {
       setLoading(false);
     }
@@ -161,10 +190,7 @@ function RegisterDetailsContent() {
         className="login-brand-panel"
       >
         <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
-          <div style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(255,255,255,0.15)", backdropFilter: "blur(8px)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.2)" }}>
-            <span aria-hidden="true" style={logoImage(24)} />
-          </div>
-          <span style={{ fontWeight: 700, fontSize: 15, color: "white" }}>Beyond ERP</span>
+          <span style={{ fontWeight: 800, fontSize: 18, color: "white", letterSpacing: "-0.02em" }}>BeyondERP</span>
         </div>
 
         <div style={{ position: "relative" }}>
@@ -191,7 +217,7 @@ function RegisterDetailsContent() {
 
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", position: "relative" }}>
           <p style={{ margin: 0, fontSize: 11, color: "rgba(148,163,184,0.5)" }}>
-            &copy; {new Date().getFullYear()} Beyond ERP Canada
+            &copy; {new Date().getFullYear()} BeyondERP
           </p>
           <p style={{ margin: 0, fontSize: 11, color: "rgba(148,163,184,0.7)" }}>
             Developed by <a href="https://beyond.et" target="_blank" rel="noopener noreferrer" style={{ color: "#93c5fd", textDecoration: "underline" }}>beyond.et</a>
@@ -202,10 +228,7 @@ function RegisterDetailsContent() {
       <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 28px" }}>
           <div className="login-mobile-logo" style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 8, background: "#2563eb", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span aria-hidden="true" style={logoImage(18)} />
-            </div>
-            <span style={{ fontWeight: 700, fontSize: 14, color: ink }}>Beyond ERP</span>
+            <span style={{ fontWeight: 800, fontSize: 16, color: ink, letterSpacing: "-0.02em" }}>BeyondERP</span>
           </div>
           <ThemeToggle />
         </div>
@@ -260,7 +283,7 @@ function RegisterDetailsContent() {
                     }}
                     required
                     autoFocus
-                    placeholder="Selam Trading PLC"
+                    placeholder="Your business LLC"
                     style={fieldStyle(Boolean(errors.companyName))}
                     onFocus={(e) => (e.currentTarget.style.borderColor = "#2563eb")}
                     onBlur={(e) => (e.currentTarget.style.borderColor = errors.companyName ? errorBorder : border)}
@@ -292,7 +315,7 @@ function RegisterDetailsContent() {
                       setErrors((er) => ({ ...er, fullName: "" }));
                     }}
                     required
-                    placeholder="Abebe Kebede"
+                    placeholder="Full name"
                     style={fieldStyle(Boolean(errors.fullName))}
                     onFocus={(e) => (e.currentTarget.style.borderColor = "#2563eb")}
                     onBlur={(e) => (e.currentTarget.style.borderColor = errors.fullName ? errorBorder : border)}
@@ -311,7 +334,7 @@ function RegisterDetailsContent() {
                       setErrors((er) => ({ ...er, email: "" }));
                     }}
                     required
-                    placeholder="owner@company.com"
+                    placeholder="name@example.com"
                     style={fieldStyle(Boolean(errors.email))}
                     onFocus={(e) => (e.currentTarget.style.borderColor = "#2563eb")}
                     onBlur={(e) => (e.currentTarget.style.borderColor = errors.email ? errorBorder : border)}
@@ -332,7 +355,7 @@ function RegisterDetailsContent() {
                       setErrors((er) => ({ ...er, phone: "" }));
                     }}
                     required
-                    placeholder="+251 911 234 567"
+                    placeholder="xxx-xxxx-xx"
                     style={fieldStyle(Boolean(errors.phone))}
                     onFocus={(e) => (e.currentTarget.style.borderColor = "#2563eb")}
                     onBlur={(e) => (e.currentTarget.style.borderColor = errors.phone ? errorBorder : border)}
@@ -342,15 +365,22 @@ function RegisterDetailsContent() {
                 </label>
 
                 <label style={labelStyle}>
-                  Notes <span style={{ color: muted, fontWeight: 500 }}>(optional)</span>
-                  <textarea
-                    value={form.notes}
-                    onChange={(e) => setForm((f) => ({ ...f, notes: e.target.value }))}
-                    placeholder="Payment ref, modules, or setup notes"
-                    style={notesStyle()}
+                  Password
+                  <input
+                    type="password"
+                    value={form.password}
+                    onChange={(e) => {
+                      setForm((f) => ({ ...f, password: e.target.value }));
+                      setErrors((er) => ({ ...er, password: "" }));
+                    }}
+                    required
+                    placeholder="At least 6 characters"
+                    style={fieldStyle(Boolean(errors.password))}
                     onFocus={(e) => (e.currentTarget.style.borderColor = "#2563eb")}
-                    onBlur={(e) => (e.currentTarget.style.borderColor = border)}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = errors.password ? errorBorder : border)}
+                    aria-invalid={Boolean(errors.password)}
                   />
+                  {errors.password ? <p style={errorStyle}>{errors.password}</p> : null}
                 </label>
               </div>
 
@@ -378,6 +408,25 @@ function RegisterDetailsContent() {
                 {loading && <Loader2 className="spin" size={17} />}
                 {loading ? "Submitting request..." : "Submit registration request"}
                 {!loading && <ArrowRight size={16} />}
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setGuestFullName(form.fullName || "Your Name");
+                  setGuestCompanyName(form.companyName || "Your Business LLC");
+                  setGuestSectorId(sectorId || "retail-trading");
+                  setShowGuestModal(true);
+                }}
+                style={{
+                  height: 46, borderRadius: 10, border: `1.5px solid #2563eb`, marginTop: 4,
+                  background: dark ? "rgba(37,99,235,0.15)" : "#eff6ff",
+                  color: dark ? "#93c5fd" : "#1d4ed8", fontWeight: 700, fontSize: 14,
+                  cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  transition: "background 0.15s",
+                }}
+              >
+                ⚡ Quick Preview / Guest Access
               </button>
             </form>
 
@@ -420,6 +469,85 @@ function RegisterDetailsContent() {
           </div>
         </div>
       </div>
+
+      {/* Guest Personalization Modal */}
+      {showGuestModal && (
+        <div style={{
+          position: "fixed", inset: 0, zIndex: 1000,
+          background: "rgba(15, 23, 42, 0.65)", backdropFilter: "blur(6px)",
+          display: "flex", alignItems: "center", justifyContent: "center", padding: 20
+        }}>
+          <div style={{
+            background: surface, border: `1px solid ${border}`, borderRadius: 16,
+            width: "100%", maxWidth: 580, maxHeight: "90vh", overflowY: "auto",
+            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.35)", padding: 32,
+            display: "flex", flexDirection: "column", gap: 24
+          }}>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+              <div>
+                <p style={{ margin: "0 0 4px", fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: "#2563eb" }}>
+                  Guest Setup
+                </p>
+                <h3 style={{ margin: 0, fontSize: 22, fontWeight: 700, color: ink }}>
+                  Personalize Your Guest Workspace
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowGuestModal(false)}
+                style={{ background: "none", border: "none", cursor: "pointer", color: muted, padding: 6 }}
+              >
+                <X size={20} />
+              </button>
+            </div>
+
+            <form onSubmit={handleGuestLaunch} style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+                <label style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, fontWeight: 600, color: ink }}>
+                  Your Full Name
+                  <input
+                    value={guestFullName}
+                    onChange={(e) => setGuestFullName(e.target.value)}
+                    required
+                    placeholder="Your Name"
+                    style={{
+                      height: 42, width: "100%", borderRadius: 8, border: `1.5px solid ${border}`,
+                      background: dark ? "#0a1220" : "#f8fafc", padding: "0 12px", color: ink, fontSize: 14, outline: "none"
+                    }}
+                  />
+                </label>
+
+                <label style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 13, fontWeight: 600, color: ink }}>
+                  Company Name
+                  <input
+                    value={guestCompanyName}
+                    onChange={(e) => setGuestCompanyName(e.target.value)}
+                    required
+                    placeholder="Your Business LLC"
+                    style={{
+                      height: 42, width: "100%", borderRadius: 8, border: `1.5px solid ${border}`,
+                      background: dark ? "#0a1220" : "#f8fafc", padding: "0 12px", color: ink, fontSize: 14, outline: "none"
+                    }}
+                  />
+                </label>
+              </div>
+
+              <button
+                type="submit"
+                style={{
+                  height: 46, borderRadius: 10, border: 0,
+                  background: "linear-gradient(135deg, #2563eb, #1d4ed8)",
+                  color: "white", fontWeight: 700, fontSize: 14, cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  boxShadow: "0 4px 14px rgba(37,99,235,0.35)", marginTop: 8
+                }}
+              >
+                Launch Guest Workspace →
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       {toast ? <div className="toast">{toast}</div> : null}
     </main>

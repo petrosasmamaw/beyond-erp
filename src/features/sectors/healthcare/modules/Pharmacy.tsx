@@ -167,7 +167,7 @@ export function Pharmacy() {
                     <span style={{ color: c.ink }}><strong>{d.stock}</strong> {d.unit}</span>
                     <span style={{ color: c.muted }}>Reorder at {d.reorderLevel}</span>
                     <span style={{ color: c.muted }}>Expires: {d.expiryDate}</span>
-                    <span style={{ color: c.ink }}>ETB {d.sellingPrice.toFixed(2)}</span>
+                    <span style={{ color: c.ink }}>CAD {d.sellingPrice.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -179,7 +179,7 @@ export function Pharmacy() {
       {/* Stock value footer */}
       <div style={{ padding: "10px 14px", borderRadius: 8, border: `1px solid ${c.border}`, background: c.alt, fontSize: 12, color: c.muted, display: "flex", justifyContent: "space-between" }}>
         <span>Total stock value</span>
-        <strong style={{ color: c.ink }}>ETB {totalValue.toLocaleString("en-US", { minimumFractionDigits: 2 })}</strong>
+        <strong style={{ color: c.ink }}>CAD {totalValue.toLocaleString("en-US", { minimumFractionDigits: 2 })}</strong>
       </div>
 
       <Pager page={paged.page} totalPages={paged.totalPages} total={filtered.length} onPage={setPage} />
@@ -199,8 +199,8 @@ export function Pharmacy() {
             <label style={lbl(c)}>Reorder Level<input type="number" min="0" style={inp} value={form.reorderLevel} onChange={(e) => setForm((f) => ({ ...f, reorderLevel: e.target.value }))} /></label>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-            <label style={lbl(c)}>Cost Price (ETB)<input type="number" min="0" style={inp} value={form.costPrice} onChange={(e) => setForm((f) => ({ ...f, costPrice: e.target.value }))} /></label>
-            <label style={lbl(c)}>Selling Price (ETB)<input type="number" min="0" style={inp} value={form.sellingPrice} onChange={(e) => setForm((f) => ({ ...f, sellingPrice: e.target.value }))} /></label>
+            <label style={lbl(c)}>Cost Price (CAD)<input type="number" min="0" style={inp} value={form.costPrice} onChange={(e) => setForm((f) => ({ ...f, costPrice: e.target.value }))} /></label>
+            <label style={lbl(c)}>Selling Price (CAD)<input type="number" min="0" style={inp} value={form.sellingPrice} onChange={(e) => setForm((f) => ({ ...f, sellingPrice: e.target.value }))} /></label>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             <label style={lbl(c)}>Expiry Date *<input type="date" style={inp} value={form.expiryDate} onChange={(e) => setForm((f) => ({ ...f, expiryDate: e.target.value }))} /></label>

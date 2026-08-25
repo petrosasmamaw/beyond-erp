@@ -1230,9 +1230,8 @@ export default function LandingPage() {
       <div className="landing-card">
         {/* ============= NAV ============= */}
         <nav className="landing-nav">
-          <a className="nav-brand" href="#" style={{ textDecoration: "none" }}>
-            <LogoTile tileSize={32} iconSize={20} background={blue} />
-            Beyond<span className="dot">.</span>
+          <a className="nav-brand" href="#" style={{ textDecoration: "none", fontFamily: '"Inter Tight", sans-serif', fontWeight: 700, fontSize: 24, letterSpacing: "-0.02em" }}>
+            Beyond ERP
           </a>
 
           <div className="nav-links">
@@ -1256,19 +1255,19 @@ export default function LandingPage() {
         {/* ============= HERO (UNCHANGED) ============= */}
         <section className="hero">
           <div className="hero-left">
-            <div className="hero-eyebrow">Beyond ERP . Canada</div>
+            <div className="hero-eyebrow">Enterprise Operating System</div>
             <h1 className="hero-title">
-              Empower Your<br />
-              Business with<br />
-              <em>Modern</em> Solutions
+              Built for Modern<br />
+              <em>Accounting, Tax</em><br />
+              & Operations
             </h1>
             <p className="hero-copy">
-              A sector-aware ERP workspace for sales, stock, payroll, finance, and reports. CRA compliant, GST/HST/PST built in, and offline-first for Canadian businesses.
+              The unified ERP & CRM platform for modern businesses. Automated tax filing, compliance-ready ledgers, seamless payments, and bilingual workflows.
             </p>
 
             <div className="hero-actions">
               <button type="button" className="btn-primary" onClick={() => router.push("/register")}>
-                Get Started
+                Start Free Trial
                 <ArrowRight size={16} />
               </button>
               <button type="button" className="btn-link" onClick={() => router.push("/login")}>
@@ -1277,15 +1276,15 @@ export default function LandingPage() {
             </div>
 
             <div className="hero-proof">
-              <span className="proof-label">Trusted by</span>
+              <span className="proof-label">Certified</span>
               <span className="proof-logo">
-                <ShieldCheck size={16} /> CRA Compliant
+                <ShieldCheck size={16} /> Compliance & Tax Ready
               </span>
               <span className="proof-logo">
-                <Languages size={16} /> English · French (Canada)
+                <Languages size={16} /> English · Français
               </span>
               <span className="proof-logo">
-                <Wifi size={16} /> Offline-first
+                <Wifi size={16} /> Offline-First Sync
               </span>
             </div>
           </div>
@@ -1317,7 +1316,7 @@ export default function LandingPage() {
                   <div className="mockup-metric">
                     <div className="mockup-metric-label">Revenue</div>
                     <div className="mockup-metric-value">
-                      ETB 428k
+                      CAD 428k
                       <span className="mockup-metric-delta">+12%</span>
                     </div>
                   </div>
@@ -1630,58 +1629,7 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* ============= FOOTER ============= */}
-        <footer className="footer">
-          <div className="footer-top">
-            <div className="footer-brand-block">
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <LogoTile tileSize={32} iconSize={20} background={blue} />
-                <span style={{ fontFamily: '"Instrument Serif", Georgia, serif', fontSize: 22, color: ink }}>
-                  Beyond<span style={{ color: blue }}>.</span>
-                </span>
-              </div>
-              <h3>The operating system for Canadian companies.</h3>
-              <p>
-                Built for Canadian accounting, tax, payroll, and banking standards.
-              </p>
-            </div>
 
-            <div className="footer-col">
-              <h4>Product</h4>
-              <a href="#sectors">Sectors</a>
-              <a href="#features">Features</a>
-              <a href="#start">Pricing</a>
-              <a href="/register">Get access</a>
-            </div>
-
-            <div className="footer-col">
-              <h4>Company</h4>
-              <a href="#start">About</a>
-              <a href="#start">Contact</a>
-              <a href="#start">Careers</a>
-              <a href="/login">Sign in</a>
-            </div>
-
-            <div className="footer-col">
-              <h4>Compliance</h4>
-              <a href="#start">CRA compliance</a>
-              <a href="#start">GST/HST/PST</a>
-              <a href="#start">Data security</a>
-              <a href="#start">Privacy</a>
-            </div>
-          </div>
-
-          <div className="footer-bottom">
-            <div className="footer-meta">
-              <span>&copy; {new Date().getFullYear()} Beyond ERP Canada</span>
-              <span>Developed by <a href="https://beyond.et" target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "underline", fontWeight: 600 }}>beyond.et</a></span>
-            </div>
-            <a href="/sa" className="admin-link" aria-label="Open system admin">
-              Admin
-              <span className="sa-tag">SA</span>
-            </a>
-          </div>
-        </footer>
       </div>
     </main>
   );

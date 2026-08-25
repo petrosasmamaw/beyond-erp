@@ -194,7 +194,7 @@ export function Lab() {
                     <span style={{ display: "inline-flex", alignItems: "center", height: 16, padding: "0 6px", borderRadius: 4, background: `${statusColor}18`, color: statusColor, fontSize: 9.5, fontWeight: 700, textTransform: "uppercase" }}>{r.status}</span>
                   </div>
                   <div style={{ fontSize: 13, fontWeight: 600, color: c.ink, marginTop: 3 }}>{r.testName} <span style={{ fontSize: 11, fontWeight: 400, color: c.muted }}>· {r.category}</span></div>
-                  <div style={{ fontSize: 11, color: c.muted, marginTop: 1 }}>{r.requestedBy} · {r.date} · ETB {r.cost}</div>
+                  <div style={{ fontSize: 11, color: c.muted, marginTop: 1 }}>{r.requestedBy} · {r.date} · CAD {r.cost}</div>
                   {r.result && (
                     <div style={{ marginTop: 5, fontSize: 12, color: "#059669", background: c.dark ? "#071812" : "#f0fdf4", padding: "3px 8px", borderRadius: 6, display: "inline-block" }}>
                       Result: {r.result}
@@ -236,7 +236,7 @@ export function Lab() {
             <label style={lbl(c)}>Requested By<select style={inp} value={form.requestedBy} onChange={(e) => setForm((f) => ({ ...f, requestedBy: e.target.value }))}>{DOCTORS.map((d) => <option key={d}>{d}</option>)}</select></label>
             <label style={lbl(c)}>Priority<select style={inp} value={form.priority} onChange={(e) => setForm((f) => ({ ...f, priority: e.target.value as LabPriority }))}><option>Normal</option><option>Urgent</option><option>STAT</option></select></label>
           </div>
-          <label style={lbl(c)}>Cost (ETB)<input type="number" min="0" style={inp} value={form.cost} onChange={(e) => setForm((f) => ({ ...f, cost: e.target.value }))} placeholder="e.g. 180" /></label>
+          <label style={lbl(c)}>Cost (CAD)<input type="number" min="0" style={inp} value={form.cost} onChange={(e) => setForm((f) => ({ ...f, cost: e.target.value }))} placeholder="e.g. 180" /></label>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginTop: 4 }}>
             <button type="button" onClick={() => setShowModal(false)} style={{ height: 36, borderRadius: 8, border: `1px solid ${c.border}`, background: c.surface, color: c.ink, fontSize: 13, fontWeight: 600, cursor: "pointer" }}>Cancel</button>
             <button type="button" onClick={handleAdd} style={{ height: 36, borderRadius: 8, border: 0, background: "#2563eb", color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>Submit Request</button>

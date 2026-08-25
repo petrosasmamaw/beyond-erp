@@ -400,7 +400,7 @@ function HealthcareMockModule({ definition }: { definition: ModuleDef }) {
           </div>
           <label style={labelStyle(c)}>
             Value / Metric
-            <input style={inputStyle} value={form.value} onChange={(e) => setForm((f) => ({ ...f, value: e.target.value }))} placeholder="ETB amount, count, bed, ward, or score" />
+            <input style={inputStyle} value={form.value} onChange={(e) => setForm((f) => ({ ...f, value: e.target.value }))} placeholder="CAD amount, count, bed, ward, or score" />
           </label>
           <label style={labelStyle(c)}>
             Note
@@ -504,7 +504,7 @@ const modules: Record<string, ModuleDef> = {
       { label: "Patients Today", value: "86", tone: "blue" },
       { label: "Beds Occupied", value: "41 / 58", tone: "green" },
       { label: "Critical Alerts", value: "7", tone: "red" },
-      { label: "Revenue Today", value: "ETB 128k", tone: "amber" }
+      { label: "Revenue Today", value: "CAD 128k", tone: "amber" }
     ],
     workflow: ["Register", "Triage", "Consult", "Orders", "Dispense or Report", "Bill", "Report"],
     tabs: ["All", "Clinical", "Finance", "Operations", "Compliance"],
@@ -536,7 +536,7 @@ const modules: Record<string, ModuleDef> = {
     ],
     records: [
       { id: "cmd-1", title: "Morning clinical huddle", subtitle: "Critical patients, STAT labs, theatre schedule, and pharmacy stock risk reviewed.", status: "Clinical", owner: "Medical Director", date: "2026-05-27", priority: "High", category: "Clinical", details: ["ICU", "STAT labs", "Theatre"] },
-      { id: "cmd-2", title: "Insurance claim cleanup", subtitle: "Rejected claims require diagnosis code and attachment review before resubmission.", status: "Finance", owner: "Claims Officer", date: "2026-05-27", value: "ETB 42k", category: "Finance", details: ["Claims", "Attachments"] },
+      { id: "cmd-2", title: "Insurance claim cleanup", subtitle: "Rejected claims require diagnosis code and attachment review before resubmission.", status: "Finance", owner: "Claims Officer", date: "2026-05-27", value: "CAD 42k", category: "Finance", details: ["Claims", "Attachments"] },
       { id: "cmd-3", title: "EHMIS weekly export draft", subtitle: "Routine service indicators are staged for data quality check and DHIS2/eHMIS export.", status: "Compliance", owner: "HIS Officer", date: "2026-05-26", category: "Compliance", details: ["DHIS2", "HMIS", "Validation"] }
     ]
   },
@@ -771,9 +771,9 @@ const modules: Record<string, ModuleDef> = {
       }
     ],
     records: [
-      { id: "clm-1", title: "CLM-2026-0443 - Dawit Mekonnen", subtitle: "ICU admission claim pending payer review with cardiology notes attached.", status: "Submitted", owner: "Ethio-Life Health", date: "2026-05-26", value: "ETB 4,200", details: ["Preauth PA-1772", "Clinical attachment"] },
-      { id: "clm-2", title: "CLM-2026-0447 - Solomon Kebede", subtitle: "Emergency COPD claim requires ABG result attachment before resubmission.", status: "Rejected", owner: "CBE Health Insurance", date: "2026-05-27", value: "ETB 2,800", priority: "High", details: ["Missing result", "Resubmit"] },
-      { id: "clm-3", title: "CLM-2026-0421 - Maternity package", subtitle: "Preauthorization requested for planned procedure package.", status: "Preauth", owner: "Awash Insurance", date: "2026-05-28", value: "ETB 8,600", details: ["OB/GYN", "Awaiting payer"] }
+      { id: "clm-1", title: "CLM-2026-0443 - Dawit Mekonnen", subtitle: "ICU admission claim pending payer review with cardiology notes attached.", status: "Submitted", owner: "Ethio-Life Health", date: "2026-05-26", value: "CAD 4,200", details: ["Preauth PA-1772", "Clinical attachment"] },
+      { id: "clm-2", title: "CLM-2026-0447 - Solomon Kebede", subtitle: "Emergency COPD claim requires ABG result attachment before resubmission.", status: "Rejected", owner: "CBE Health Insurance", date: "2026-05-27", value: "CAD 2,800", priority: "High", details: ["Missing result", "Resubmit"] },
+      { id: "clm-3", title: "CLM-2026-0421 - Maternity package", subtitle: "Preauthorization requested for planned procedure package.", status: "Preauth", owner: "Awash Insurance", date: "2026-05-28", value: "CAD 8,600", details: ["OB/GYN", "Awaiting payer"] }
     ]
   },
   inventory: {
@@ -804,9 +804,9 @@ const modules: Record<string, ModuleDef> = {
       }
     ],
     records: [
-      { id: "inv-1", title: "PO-2026-0081 - Lab reagents", subtitle: "Biochemistry reagents ordered from Medico Ethiopia.", status: "Purchase Order", owner: "Procurement", date: "2026-05-25", value: "ETB 86,000", details: ["Vendor: Medico", "Expected 2026-05-30"] },
+      { id: "inv-1", title: "PO-2026-0081 - Lab reagents", subtitle: "Biochemistry reagents ordered from Medico Ethiopia.", status: "Purchase Order", owner: "Procurement", date: "2026-05-25", value: "CAD 86,000", details: ["Vendor: Medico", "Expected 2026-05-30"] },
       { id: "inv-2", title: "Surgical gloves - size M", subtitle: "Below reorder level in surgery store and emergency room.", status: "Low Stock", owner: "Main Store", date: "2026-05-27", value: "72 boxes", priority: "High", details: ["Reorder at 150", "2 branches"] },
-      { id: "inv-3", title: "Patient monitor PM-17", subtitle: "Received and tagged for ICU asset register.", status: "Asset", owner: "Biomedical", date: "2026-05-24", value: "ETB 210,000", details: ["Serial PM17-889", "Warranty 24 months"] }
+      { id: "inv-3", title: "Patient monitor PM-17", subtitle: "Received and tagged for ICU asset register.", status: "Asset", owner: "Biomedical", date: "2026-05-24", value: "CAD 210,000", details: ["Serial PM17-889", "Warranty 24 months"] }
     ]
   },
   emergencyTheatre: {
@@ -979,9 +979,9 @@ const modules: Record<string, ModuleDef> = {
       }
     ],
     records: [
-      { id: "rep-1", title: "Daily revenue dashboard", subtitle: "Billing, pharmacy, lab, consultation, and insurance balances by branch.", status: "Finance", owner: "Accountant", date: "2026-05-27", value: "ETB 128k", category: "Finance", details: ["Revenue", "Collections", "Outstanding"] },
+      { id: "rep-1", title: "Daily revenue dashboard", subtitle: "Billing, pharmacy, lab, consultation, and insurance balances by branch.", status: "Finance", owner: "Accountant", date: "2026-05-27", value: "CAD 128k", category: "Finance", details: ["Revenue", "Collections", "Outstanding"] },
       { id: "rep-2", title: "EHMIS weekly service report", subtitle: "Routine indicators staged for HIS officer review before export.", status: "EHMIS", owner: "HIS Officer", date: "2026-W22", category: "EHMIS", details: ["Completeness 96%", "DHIS2 export"] },
-      { id: "rep-3", title: "Pharmacy expiry risk report", subtitle: "Medicine batches expiring in 60 days with stock value exposure.", status: "Inventory", owner: "Pharmacist", date: "2026-05-27", value: "ETB 34k", category: "Inventory", details: ["Batch", "Expiry", "Supplier"] }
+      { id: "rep-3", title: "Pharmacy expiry risk report", subtitle: "Medicine batches expiring in 60 days with stock value exposure.", status: "Inventory", owner: "Pharmacist", date: "2026-05-27", value: "CAD 34k", category: "Inventory", details: ["Batch", "Expiry", "Supplier"] }
     ]
   },
   compliance: {

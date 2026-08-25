@@ -2,6 +2,7 @@ import {
   BadgeCheck,
   BriefcaseBusiness,
   Building2,
+  CreditCard,
   Factory,
   GraduationCap,
   HandHeart,
@@ -15,7 +16,7 @@ import {
 import type { Dashboard } from "@/lib/types";
 
 export type LangKey =
-  | "home" | "sectors" | "money" | "team" | "finance" | "reports" | "admin" | "setup"
+  | "home" | "sectors" | "money" | "team" | "finance" | "reports" | "admin" | "setup" | "crm"
   | "morning" | "afternoon" | "evening"
   | "dashboard" | "addTransaction" | "revenue" | "expenses" | "netProfit" | "pendingSync"
   | "employees" | "settings" | "search" | "save" | "cancel" | "delete" | "edit" | "add"
@@ -25,7 +26,7 @@ export type LangKey =
 
 const i18n: Record<string, Partial<Record<LangKey, string>>> = {
   "English (USA)": {
-    home: "Home", sectors: "Sectors", money: "Money", team: "Team",
+    home: "Home", sectors: "Sectors", money: "Money", team: "Team", crm: "CRM",
     finance: "Finance", reports: "Reports", admin: "Admin", setup: "Setup",
     morning: "Morning", afternoon: "Afternoon", evening: "Evening",
     dashboard: "Dashboard", addTransaction: "Add Transaction", revenue: "Revenue",
@@ -40,7 +41,7 @@ const i18n: Record<string, Partial<Record<LangKey, string>>> = {
     tinNumber: "Business Number (BN)", language: "Language", clearCache: "Clear Cache"
   },
   "French (Canada)": {
-    home: "Accueil", sectors: "Secteurs", money: "Argent", team: "Équipe",
+    home: "Accueil", sectors: "Secteurs", money: "Argent", team: "Équipe", crm: "CRM",
     finance: "Finances", reports: "Rapports", admin: "Admin", setup: "Paramètres",
     morning: "Matin", afternoon: "Après-midi", evening: "Soir",
     dashboard: "Tableau de bord", addTransaction: "Ajouter transaction", revenue: "Revenus",
@@ -60,13 +61,10 @@ export function t(key: LangKey, language = "English (USA)"): string {
   return i18n[language]?.[key] ?? i18n["English (USA)"]?.[key] ?? key;
 }
 
-export const paymentMethods = ["Interac e-Transfer", "Cash", "EFT Direct Deposit", "Credit Card", "Cheque"];
+export const paymentMethods = ["Card Payment", "Direct Deposit"];
 export const paymentMethodsWithIcons = [
-  { method: "Interac e-Transfer", icon: "💸" },
-  { method: "Cash", icon: "💵" },
-  { method: "EFT Direct Deposit", icon: "🏦" },
-  { method: "Credit Card", icon: "💳" },
-  { method: "Cheque", icon: "📝" }
+  { method: "Card Payment", icon: <CreditCard size={15} /> },
+  { method: "Direct Deposit", icon: <Landmark size={15} /> }
 ];
 export const permissions = ["View", "Edit", "Delete", "Approve", "Reports", "Export"];
 export const months = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];

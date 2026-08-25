@@ -36,7 +36,7 @@ export default function ReportsPage() {
 
   const shareReport = () => {
     const companyName = settings?.companyName ?? "Beyond ERP";
-    const text = [`Beyond ERP Report`, `Company: ${companyName}`, `Net profit: ETB ${dashboard.stats.netProfit}`].join("\n");
+    const text = [`Beyond ERP Report`, `Company: ${companyName}`, `Net profit: CAD ${dashboard.stats.netProfit}`].join("\n");
     const appUrl = typeof window !== "undefined" ? window.location.origin : "https://beyonderp.local";
     const url = `https://t.me/share/url?url=${encodeURIComponent(appUrl)}&text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
