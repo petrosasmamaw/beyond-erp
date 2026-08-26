@@ -202,14 +202,7 @@ export function Sidebar({
           </div>
         )}
         {collapsed && (
-          <div
-            style={{
-              width: 28, height: 28, borderRadius: 7, background: "#2563eb",
-              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: "white"
-            }}
-          >
-            BE
-          </div>
+          <div style={{ width: 0, height: 0, display: "none" }} />
         )}
         <button
           onClick={onToggle}
@@ -217,7 +210,7 @@ export function Sidebar({
           style={{
             background: "none", border: "none", color: muted, cursor: "pointer",
             padding: 4, borderRadius: 5, display: "flex", alignItems: "center",
-            justifyContent: "center", flexShrink: 0,
+            justifyContent: "center", flexShrink: 0, marginLeft: collapsed ? "auto" : 0
           }}
         >
           {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
@@ -393,7 +386,7 @@ export function Sidebar({
         <div style={{ height: 1, background: border, margin: "4px 6px" }} />
         <button
           onClick={onOpenAI}
-          title={collapsed ? "AI Copilot" : undefined}
+          title={collapsed ? "AI Assistant" : undefined}
           style={{
             width: "100%",
             display: "flex",
@@ -416,7 +409,7 @@ export function Sidebar({
           <Sparkles size={14} style={{ flexShrink: 0, width: 17, textAlign: "center", color: "#60a5fa" }} />
           {!collapsed && (
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1 }}>
-              AI Copilot
+              AI Assistant
             </span>
           )}
         </button>

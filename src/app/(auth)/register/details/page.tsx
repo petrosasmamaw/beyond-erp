@@ -219,9 +219,6 @@ function RegisterDetailsContent() {
           <p style={{ margin: 0, fontSize: 11, color: "rgba(148,163,184,0.5)" }}>
             &copy; {new Date().getFullYear()} BeyondERP
           </p>
-          <p style={{ margin: 0, fontSize: 11, color: "rgba(148,163,184,0.7)" }}>
-            Developed by <a href="https://beyond.et" target="_blank" rel="noopener noreferrer" style={{ color: "#93c5fd", textDecoration: "underline" }}>beyond.et</a>
-          </p>
         </div>
       </div>
 

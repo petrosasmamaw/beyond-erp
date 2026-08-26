@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     try {
       const response = await ai.models.generateContent({
         model: "gemini-2.5-flash",
-        contents: `You are BeyondERP AI Copilot. The user asks: "${prompt}". 
+        contents: `You are BeyondERP AI Assistant. The user asks: "${prompt}". 
 Respond with helpful enterprise insight and if a write action is requested (like adding a transaction or employee), return JSON with reply and action.`
       });
       text = response.text || "I have processed your request.";
@@ -30,14 +30,14 @@ Respond with helpful enterprise insight and if a write action is requested (like
         text = "I've successfully logged that transaction into your BeyondERP financial ledger!";
         action = {
           type: "ADD_TRANSACTION",
-          payload: { type: "INCOME", amount: 1500, description: prompt, category: "AI Copilot Entry" }
+          payload: { type: "INCOME", amount: 1500, description: prompt, category: "AI Assistant Entry" }
         };
         db.transactions.unshift({
           id: `tx-ai-${Date.now()}`,
           type: "INCOME",
           amount: 1500,
           description: prompt,
-          category: "AI Copilot Entry",
+          category: "AI Assistant Entry",
           sectorId: db.settings.companySectorId ?? "retail-trading",
           paymentMethod: "Bank Transfer",
           vatAmount: 225,
@@ -47,7 +47,7 @@ Respond with helpful enterprise insight and if a write action is requested (like
           createdAt: new Date().toISOString()
         });
       } else {
-        text = `As your BeyondERP assistant for ${currentData?.sector || "Enterprise"}, I analyzed your query. Your financials are balanced, and compliance checks for CAD/ETB reporting are fully up to date.`;
+        text = `As your BeyondERP assistant for ${currentData?.sector || "Enterprise"}, I analyzed your query. Your financials are balanced, and compliance checks for CAD reporting are fully up to date.`;
       }
     }
 

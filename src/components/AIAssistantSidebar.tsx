@@ -28,7 +28,7 @@ export function AIAssistantSidebar({
   const [messages, setMessages] = useState<Message[]>([
     {
       sender: "ai",
-      text: `Hello! I'm your BeyondERP AI Copilot for ${sectorName}. Ask me anything about your finances, inventory, or give operational commands.`,
+      text: `Hello! I'm your BeyondERP AI Assistant for ${sectorName}. Ask me anything about your finances, inventory, or give operational commands.`,
     },
   ]);
 
@@ -85,7 +85,7 @@ export function AIAssistantSidebar({
         background: "rgba(15, 23, 42, 0.5)",
         backdropFilter: "blur(4px)",
         display: "flex",
-        justifyContent: "flex-start",
+        justifyContent: "flex-end",
       }}
       onClick={onClose}
     >
@@ -95,8 +95,8 @@ export function AIAssistantSidebar({
           maxWidth: "100%",
           height: "100%",
           background: surface,
-          borderRight: `1px solid ${border}`,
-          boxShadow: "10px 0 30px rgba(0,0,0,0.3)",
+          borderLeft: `1px solid ${border}`,
+          boxShadow: "-10px 0 30px rgba(0,0,0,0.3)",
           display: "flex",
           flexDirection: "column",
           padding: 24,
@@ -122,7 +122,7 @@ export function AIAssistantSidebar({
               <Sparkles size={18} />
             </div>
             <div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: text, margin: 0 }}>BeyondERP AI Copilot</h3>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: text, margin: 0 }}>BeyondERP AI Assistant</h3>
               <p style={{ fontSize: 11, color: muted, margin: 0 }}>Powered by Gemini 2.5 Flash</p>
             </div>
           </div>

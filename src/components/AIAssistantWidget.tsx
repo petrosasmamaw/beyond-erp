@@ -19,7 +19,7 @@ export function AIAssistantWidget({ sectorName }: { sectorName: string }) {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { sender: "ai", text: `Hello! I'm your BeyondERP AI Copilot for ${sectorName}. I can answer questions, generate financial summaries, or write/update records (e.g. "Add a $1,500 revenue transaction for consulting"). How can I help?` }
+    { sender: "ai", text: `Hello! I'm your BeyondERP AI Assistant for ${sectorName}. I can answer questions, generate financial summaries, or write/update records (e.g. "Add a $1,500 revenue transaction for consulting"). How can I help?` }
   ]);
 
   const surface = dark ? "#111c2e" : "#ffffff";

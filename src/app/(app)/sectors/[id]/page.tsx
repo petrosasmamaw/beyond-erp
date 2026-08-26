@@ -4,6 +4,8 @@ import { use } from "react";
 import { useApp } from "@/contexts/AppContext";
 import { SectorDetail } from "@/features/erp/views/sectors";
 
+export const dynamic = 'force-dynamic';
+
 export default function SectorDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const { sectors, settings, refreshTrigger: _rt } = useApp();

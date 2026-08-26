@@ -4,6 +4,8 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useApp } from "@/contexts/AppContext";
 import { AdminView } from "@/features/erp/views/admin";
 
+export const dynamic = 'force-dynamic';
+
 export default function AdminPage() {
   const { user } = useAuth();
   const { showToast } = useApp();

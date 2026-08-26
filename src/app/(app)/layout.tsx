@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Download, FileText, Loader2, LogOut, RefreshCcw } from "lucide-react";
+import { Download, FileText, Loader2, LogOut, RefreshCcw, Sparkles } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useApp } from "@/contexts/AppContext";
 import { getSectorDefinition } from "@/features/erp/config";
@@ -37,6 +37,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [aiOpen, setAiOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [dateStr, setDateStr] = useState("2026-01-01");
+  const [timeGreeting, setTimeGreeting] = useState("Hello");
+
+  useEffect(() => {
+    setMounted(true);
+    setDateStr(new Date().toISOString().slice(0, 10));
+    setTimeGreeting(getTimeOfDay());
+  }, []);
 
   useEffect(() => {
     const stored = localStorage.getItem(SIDEBAR_KEY);
@@ -122,7 +131,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <header className="app-topbar">
             <div>
               <div style={{ fontSize: 11, color: "var(--muted)", fontWeight: 600, lineHeight: 1, textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                {getTimeOfDay()} · {new Date().toISOString().slice(0, 10)}
+                {timeGreeting} · {dateStr}
               </div>
               <strong style={{ fontSize: 16, fontWeight: 700, color: "var(--ink)", lineHeight: 1.25, display: "block", marginTop: 2 }}>
                 {companyName}
@@ -130,10 +139,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span className={`connection-badge ${apiStatus}`}>{apiStatus}</span>
-
-              <ThemeToggle />
-
               <button
                 className="icon-button topbar-btn"
                 onClick={() => void syncPending()}
@@ -141,6 +146,15 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               >
                 {isSyncing ? <Loader2 className="spin" size={16} /> : <RefreshCcw size={16} />}
                 {pendingCount > 0 ? <span>{pendingCount}</span> : null}
+              </button>
+
+              <button
+                className="icon-button topbar-btn"
+                onClick={() => setAiOpen(true)}
+                aria-label="AI Assistant"
+                title="AI Assistant"
+              >
+                <Sparkles size={16} style={{ color: "#2563eb" }} />
               </button>
 
               {pendingCount > 0 && !isSyncing ? (
@@ -188,14 +202,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <strong style={{ fontSize: 13 }}>CRA Tax Engine Active</strong>
               <span style={{ fontSize: 12 }}>· Province: Ontario (HST 13%) · CAD ($)</span>
             </div>
-            <div style={{ fontSize: 12, color: "var(--muted)" }}>
-              Developed by <a href="https://beyond.et" target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline", fontWeight: 600 }}>beyond.et</a>
-            </div>
           </div>
 
           <div className="print-header">
             <h1>BeyondERP - {settings?.companyName ?? "Business Report"}</h1>
-            <span>Business Number (BN): {settings?.tinNumber ?? "123456789 RT0001"} | Printed: {new Date().toISOString().slice(0, 10)}</span>
+            <span>Business Number (BN): {settings?.tinNumber ?? "123456789 RT0001"} | Printed: {dateStr}</span>
           </div>
 
           <section className="page-body">

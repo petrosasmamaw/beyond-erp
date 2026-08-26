@@ -5,6 +5,8 @@ import { useApp } from "@/contexts/AppContext";
 import { getSectorConfig } from "@/features/sectors";
 import { EmptyState } from "@/components/ui/EmptyState";
 
+export const dynamic = 'force-dynamic';
+
 export default function ModulePage({ params }: { params: Promise<{ module: string }> }) {
   const { module: moduleKey } = use(params);
   const { settings } = useApp();

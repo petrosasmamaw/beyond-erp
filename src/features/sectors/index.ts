@@ -10,7 +10,7 @@ import { transportLogisticsConfig } from "./transport-logistics/config";
 import { financeBankingConfig } from "./finance-banking/config";
 import { realEstateConfig } from "./real-estate/config";
 import { ngoDevelopmentConfig } from "./ngo-development/config";
-import { governmentServicesConfig } from "./government-services/config";
+import { requestCustomConfig } from "./request-custom/config";
 
 const registry: Record<string, SectorConfig> = {
   "retail-trading": retailTradingConfig,
@@ -24,7 +24,7 @@ const registry: Record<string, SectorConfig> = {
   "finance-banking": financeBankingConfig,
   "real-estate": realEstateConfig,
   "ngo-development": ngoDevelopmentConfig,
-  "government-services": governmentServicesConfig
+  "request-custom": requestCustomConfig
 };
 
 export function getSectorConfig(sectorId?: string | null): SectorConfig | null {

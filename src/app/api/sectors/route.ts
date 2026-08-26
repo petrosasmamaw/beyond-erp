@@ -126,14 +126,14 @@ export async function GET(req: NextRequest) {
       sectorRecords: []
     },
     {
-      id: "government-services",
-      name: "Government & Public Services",
-      icon: "ShieldCheck",
-      color: "slate",
-      lightColor: "#f8fafc",
-      textColor: "#475569",
-      description: "Public permit issuance, citizen registries, municipal asset tracking, and budget disbursement.",
-      features: ["Permits", "Citizen Registry", "Assets", "Budgets", "Disbursements"],
+      id: "request-custom",
+      name: "Request Custom",
+      icon: "Wand2",
+      color: "blue",
+      lightColor: "#eff6ff",
+      textColor: "#2563eb",
+      description: "Request a custom ERP sector tailored to your organization with specific modules and brief.",
+      features: ["Custom Modules", "Briefing", "Workflow", "Integrations", "Analytics"],
       teamMembers: [],
       sectorRecords: []
     },

@@ -84,12 +84,29 @@ export function SectorDetail({
   const managers = sector.teamMembers.filter((m) => m.type === "MANAGER");
   const templates = sectorWorkflowTemplates[sector.id] ?? [];
   const [domainWorkflows, setDomainWorkflows] = useState<DomainWorkflow[]>([]);
+  const [selectedModules, setSelectedModules] = useState<string[]>(["Financials & Ledger", "Inventory & Stock"]);
+  const [customBrief, setCustomBrief] = useState("");
 
   useEffect(() => {
     api.domainWorkflows(sector.id)
       .then((r) => setDomainWorkflows(r.workflows))
       .catch(() => setDomainWorkflows([]));
   }, [sector.id]);
+
+  const handleCustomSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!customBrief.trim()) {
+      showToast("Please enter a brief description for your custom request.");
+      return;
+    }
+    showToast("Custom sector request & brief submitted successfully!");
+    setCustomBrief("");
+  };
+
+  const availableModules = [
+    "Financials & Ledger", "Inventory & Stock", "CRM Pipeline", "HR & Payroll",
+    "Document Archive", "Reports & Analytics", "Point of Sale (POS)", "Compliance & Audit", "Custom Workflows"
+  ];
 
   const removeMember = (member: TeamMember) => {
     openConfirmModal(`Remove ${member.fullName} from this sector?`, async () => {
@@ -114,51 +131,117 @@ export function SectorDetail({
         <h2>{sector.name}</h2>
         <p>{sector.description}</p>
       </section>
-      <div className="quick-actions">
-        <button className="primary-button purple" onClick={() => openAdminModal(sector)}>
-          <ShieldCheck size={18} />
-          {t("manageAdmins", language)}
-        </button>
-        <button className="secondary-button" onClick={() => openTransactionModal()}>
-          <Plus size={18} />
-          {t("addTransaction", language)}
-        </button>
-        {sector.id === "retail-trading" ? (
-          <button className="secondary-button compact" onClick={openBarcodeModal} style={{ gridColumn: "1 / -1" }}>
-            <Barcode size={18} />
-            Generate Barcode
-          </button>
-        ) : null}
-      </div>
-      <section className="panel">
-        <div className="panel-heading">
-          <div>
-            <p className="eyebrow">{t("workflow", language)}</p>
-            <h2>{sector.workItems?.length ?? 0} {t("activeTask", language).toLowerCase()}</h2>
+
+      {sector.id === "request-custom" ? (
+        <section className="panel" style={{ padding: 24 }}>
+          <div className="panel-heading" style={{ marginBottom: 16 }}>
+            <div>
+              <p className="eyebrow">Tailored Solution</p>
+              <h2>Request Custom ERP Sector & Modules</h2>
+            </div>
           </div>
-          <button className="icon-button plain" onClick={() => openWorkItemModal(sector)} aria-label="Add task">
-            <Plus size={18} />
-          </button>
-        </div>
-        <div className="workflow-list">
-          {(sector.workItems ?? []).length === 0 ? (
-            <EmptyState title="No sector tasks yet" action="Add Task" onAction={() => openWorkItemModal(sector)} />
-          ) : (
-            sector.workItems?.map((item) => (
-              <article className="workflow-card" key={item.id}>
-                <div>
-                  <h3>{item.title}</h3>
-                  <p>{item.description ?? "Sector workflow item"}</p>
-                </div>
-                <span className="badge">{item.status.toLowerCase().replace("_", " ")}</span>
-                <span className={`badge ${item.priority === "HIGH" || item.priority === "URGENT" ? "gold" : "green"}`}>
-                  {item.priority.toLowerCase()}
-                </span>
-              </article>
-            ))
-          )}
-        </div>
-      </section>
+          <form onSubmit={handleCustomSubmit} style={{ display: "grid", gap: 20 }}>
+            <div>
+              <label style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--ink)" }}>
+                Select Required Modules (Module Box)
+              </label>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))", gap: 10 }}>
+                {availableModules.map((mod) => {
+                  const checked = selectedModules.includes(mod);
+                  return (
+                    <label
+                      key={mod}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        padding: "10px 14px",
+                        borderRadius: 8,
+                        background: checked ? "rgba(37,99,235,0.08)" : "var(--surface-subtle, #f8fafc)",
+                        border: `1px solid ${checked ? "#2563eb" : "var(--border, #e2e8f0)"}`,
+                        cursor: "pointer",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        color: "var(--ink)"
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={(e) => {
+                          if (e.target.checked) setSelectedModules((prev) => [...prev, mod]);
+                          else setSelectedModules((prev) => prev.filter((m) => m !== mod));
+                        }}
+                        style={{ accentColor: "#2563eb", width: 16, height: 16 }}
+                      />
+                      <span>{mod}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <label htmlFor="brief" style={{ display: "block", fontSize: 13, fontWeight: 700, marginBottom: 8, color: "var(--ink)" }}>
+                Description for the Brief / Specifications
+              </label>
+              <textarea
+                id="brief"
+                value={customBrief}
+                onChange={(e) => setCustomBrief(e.target.value)}
+                placeholder="Describe your operational workflows, custom reporting needs, compliance targets, or integrations..."
+                rows={5}
+                style={{
+                  width: "100%",
+                  padding: "12px 14px",
+                  borderRadius: 8,
+                  border: "1px solid var(--border, #e2e8f0)",
+                  background: "var(--surface, #ffffff)",
+                  color: "var(--ink)",
+                  fontSize: 14,
+                  resize: "vertical"
+                }}
+              />
+            </div>
+
+            <div>
+              <button type="submit" className="primary-button" style={{ background: "#2563eb", color: "#fff", padding: "12px 24px", borderRadius: 8, fontWeight: 700, border: 0, cursor: "pointer" }}>
+                Submit Custom Sector Request
+              </button>
+            </div>
+          </form>
+        </section>
+      ) : (
+        <>
+          <section className="panel">
+            <div className="panel-heading">
+              <div>
+                <p className="eyebrow">{t("workflow", language)}</p>
+                <h2>{sector.workItems?.length ?? 0} {t("activeTask", language).toLowerCase()}</h2>
+              </div>
+              <button className="icon-button plain" onClick={() => openWorkItemModal(sector)} aria-label="Add task">
+                <Plus size={18} />
+              </button>
+            </div>
+            <div className="workflow-list">
+              {(sector.workItems ?? []).length === 0 ? (
+                <EmptyState title="No sector tasks yet" action="Add Task" onAction={() => openWorkItemModal(sector)} />
+              ) : (
+                sector.workItems?.map((item) => (
+                  <article className="workflow-card" key={item.id}>
+                    <div>
+                      <h3>{item.title}</h3>
+                      <p>{item.description ?? "Sector workflow item"}</p>
+                    </div>
+                    <span className="badge">{item.status.toLowerCase().replace("_", " ")}</span>
+                    <span className={`badge ${item.priority === "HIGH" || item.priority === "URGENT" ? "gold" : "green"}`}>
+                      {item.priority.toLowerCase()}
+                    </span>
+                  </article>
+                ))
+              )}
+            </div>
+          </section>
       <section className="panel">
         <div className="panel-heading">
           <div>
@@ -250,6 +333,8 @@ export function SectorDetail({
         <StatCard label={t("sectorRevenue", language)} value={sectorRevenue > 0 ? formatCurrency(sectorRevenue) : "CAD 0"} tone="gold" />
         <StatCard label={t("pendingRecords", language)} value={String(sector.sectorRecords?.filter((r) => r.status === "PENDING").length ?? 0)} tone="red" />
       </section>
+      </>
+      )}
     </div>
   );
 }

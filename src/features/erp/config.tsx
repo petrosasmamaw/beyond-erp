@@ -300,22 +300,16 @@ export const sectorDefinitions: SectorDefinition[] = [
     ]
   },
   {
-    id: "government-services",
-    shortName: "Government",
-    name: "Government Services",
-    description: "Permits, citizen cases, revenue receipts, documents, service counters, and audit.",
-    icon: "fa-solid fa-landmark-flag",
-    color: "#64748b",
-    tint: "#f8fafc",
+    id: "request-custom",
+    shortName: "Request Custom",
+    name: "Request Custom",
+    description: "Request a custom ERP sector tailored to your organization with specific modules and brief.",
+    icon: "fa-solid fa-wand-magic-sparkles",
+    color: "#2563eb",
+    tint: "#eff6ff",
     features: [
-      { title: "Permits", description: "Applications, review stages, fees, and issuance.", icon: "fa-solid fa-file-contract", color: "#2563eb" },
-      { title: "Citizens", description: "Citizen records, requests, cases, and service history.", icon: "fa-solid fa-users", color: "#10b981" },
-      { title: "Service Cases", description: "Case queues, SLAs, assignments, and resolutions.", icon: "fa-solid fa-list-check", color: "#8b5cf6" },
-      { title: "Revenue", description: "Revenue collection, receipts, reconciliation, and deposits.", icon: "fa-solid fa-coins", color: "#f59e0b" },
-      { title: "Documents", description: "Document registry, approvals, and expiry dates.", icon: "fa-solid fa-folder-open", color: "#f97316" },
-      { title: "Counters", description: "Counter activity, wait times, and service volume.", icon: "fa-solid fa-building-user", color: "#06b6d4" },
-      { title: "Audit", description: "Activity logs, findings, evidence, and controls.", icon: "fa-solid fa-shield-halved", color: "#64748b" },
-      { title: "Performance", description: "Department KPIs, backlog, and service analytics.", icon: "fa-solid fa-chart-bar", color: "#ef4444" }
+      { title: "Custom Modules", description: "Select modules tailored to your operational workflow.", icon: "fa-solid fa-cubes", color: "#2563eb" },
+      { title: "Briefing", description: "Submit project specifications and custom requirements.", icon: "fa-solid fa-file-pen", color: "#10b981" }
     ]
   }
 ];
@@ -330,7 +324,7 @@ export function getSectorDefinition(sectorId?: string | null) {
     finance: "finance-banking",
     realestate: "real-estate",
     ngo: "ngo-development",
-    government: "government-services",
+    government: "request-custom",
     "health-sector": "healthcare",
     "edu-sector": "education",
     "hotel-sector": "hospitality"

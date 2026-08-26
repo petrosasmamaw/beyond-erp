@@ -372,7 +372,7 @@ export default function SuperAdminPage() {
             <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
               <div>
                 <h1 style={{ margin: "0 0 4px", fontSize: 22, color: S.white, fontWeight: 800 }}>Dashboard Overview</h1>
-                <p style={{ margin: 0, fontSize: 13, color: S.muted }}>May 2026 · All figures in ETB</p>
+                <p style={{ margin: 0, fontSize: 13, color: S.muted }}>May 2026 · All figures in CAD</p>
               </div>
 
               {/* KPI row */}
