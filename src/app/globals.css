@@ -30,6 +30,8 @@ body {
   background: #f0f4ff;
   color: var(--ink);
   font-family: var(--font-sans), "Noto Sans Ethiopic", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 button,

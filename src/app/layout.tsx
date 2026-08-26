@@ -1,9 +1,9 @@
+import "./globals.css";
 import type { Metadata, Viewport } from "next";
 import { Inter_Tight } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AppProvider } from "@/contexts/AppContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-import "./globals.css";
 
 const interTight = Inter_Tight({
   subsets: ["latin"],

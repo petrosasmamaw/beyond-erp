@@ -56,8 +56,16 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   });
 
   if (!response.ok) {
-    const body = await response.json().catch(() => null);
-    throw new Error(body?.message ?? `Request failed: ${response.status}`);
+    const contentType = response.headers.get("content-type");
+    let errorMessage = `Request failed: ${response.status}`;
+    if (contentType && contentType.includes("application/json")) {
+      const body = await response.json().catch(() => null);
+      if (body?.message) errorMessage = body.message;
+    } else {
+      const text = await response.text().catch(() => "");
+      if (text) errorMessage = text.slice(0, 100);
+    }
+    throw new Error(errorMessage);
   }
 
   if (response.status === 204) {
@@ -68,7 +76,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
-  health: () => apiFetch<{ ok: boolean; service: string }>("/backend-health"),
+  health: () => apiFetch<{ ok: boolean; service: string }>("/api/backend-health"),
   login: (input: { email: string; password: string }) =>
     apiFetch<AuthResponse>("/api/auth/login", {
       method: "POST",
