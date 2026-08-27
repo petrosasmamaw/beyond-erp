@@ -20,7 +20,6 @@ export function BottomNav({ language: _language }: { language?: string }) {
 
   const items: { path: string; icon: React.ReactNode; label: string }[] = [
     { path: "/dashboard", icon: <BarChart3 size={18} />, label: "Home" },
-    { path: "/transactions", icon: <Banknote size={18} />, label: "Money" },
     ...(firstModule
       ? [{ path: `/m/${firstModule.key}`, icon: <i className={firstModule.icon} style={{ fontSize: 18 }} />, label: firstModule.label }]
       : []),

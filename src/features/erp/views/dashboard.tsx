@@ -203,77 +203,7 @@ export function DashboardView({
         </div>
       </div>
 
-      {/* ── Recent transactions ── */}
-      <div style={{ borderRadius: 12, border: `1px solid ${border}`, background: surface, overflow: "hidden" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 18px", borderBottom: `1px solid ${border}` }}>
-          <div>
-            <p style={{ margin: 0, fontSize: 11, fontWeight: 700, color: muted, textTransform: "uppercase", letterSpacing: "0.07em" }}>Activity</p>
-            <h3 style={{ margin: "2px 0 0", fontSize: 14, fontWeight: 700, color: ink }}>
-              {isLoading ? "Loading…" : `${dashboard.recentTransactions.length} recent transactions`}
-            </h3>
-          </div>
-        </div>
 
-        {dashboard.recentTransactions.length === 0 && !isLoading ? (
-          <div style={{ padding: "32px 18px", textAlign: "center", color: muted, fontSize: 13 }}>No transactions yet</div>
-        ) : (
-          dashboard.recentTransactions.slice(0, 8).map((tx: Transaction, i: number) => {
-            const isIncome = tx.type === "INCOME";
-            const date = new Date(tx.occurredAt);
-            const label = date.toLocaleDateString("en-GB", { day: "2-digit", month: "short" });
-            const isLast = i === Math.min(dashboard.recentTransactions.length, 8) - 1;
-            return (
-              <div
-                key={tx.id}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "8px 1fr auto",
-                  alignItems: "center",
-                  gap: 12,
-                  padding: "10px 18px",
-                  borderBottom: isLast ? "none" : `1px solid ${border}`,
-                  transition: "background 0.12s",
-                }}
-                onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = alt)}
-                onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
-              >
-                {/* Type dot */}
-                <div style={{ width: 7, height: 7, borderRadius: "50%", background: isIncome ? "#10b981" : "#f43f5e", flexShrink: 0 }} />
-
-                {/* Description + meta */}
-                <div style={{ minWidth: 0 }}>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: ink, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis" }}>
-                    {tx.description || tx.category}
-                  </div>
-                  <div style={{ fontSize: 11, color: muted, marginTop: 1, display: "flex", alignItems: "center", gap: 6 }}>
-                    <span style={{ display: "inline-flex", alignItems: "center", height: 16, padding: "0 6px", borderRadius: 4, background: dark ? "#1a2d3d" : "#f1f5f9", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.05em", color: muted }}>
-                      {tx.category}
-                    </span>
-                    <span>·</span>
-                    <span>{label}</span>
-                    {!tx.synced && (
-                      <>
-                        <span>·</span>
-                        <span style={{ color: "#f59e0b", fontWeight: 600 }}>offline</span>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {/* Amount */}
-                <div style={{ textAlign: "right", flexShrink: 0 }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: isIncome ? "#10b981" : "#f43f5e" }}>
-                    {isIncome ? "+" : "−"}{formatCurrency(tx.amount)}
-                  </div>
-                  <div style={{ fontSize: 10.5, color: muted, marginTop: 1, textTransform: "uppercase", letterSpacing: "0.04em" }}>
-                    {tx.paymentMethod}
-                  </div>
-                </div>
-              </div>
-            );
-          })
-        )}
-      </div>
 
     </div>
   );
