@@ -1,0 +1,24 @@
+# Render Blueprint — API only (frontend deploy on Vercel)
+services:
+  - type: web
+    name: beyond-solution-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install && npm run build && npm run db:migrate-payment
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_ORIGINS
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false

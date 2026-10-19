@@ -3,7 +3,8 @@ services:
     name: beyond-solution-api
     runtime: node
     rootDir: server
-    buildCommand: npm install && npm run db:init && npm run db:seed
+    buildCommand: npm install && npm run build && npm run db:migrate-payment
+    healthCheckPath: /health
     startCommand: npm start
     envVars:
       - key: DATABASE_URL

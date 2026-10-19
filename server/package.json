@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "node --check src/index.js",
     "dev": "node scripts/ensure-port-free.js && node --watch src/index.js",
     "start": "node src/index.js",
     "db:init": "node src/db-init.js",
