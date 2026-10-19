@@ -1,0 +1,24 @@
+{
+  "name": "beyond-solution-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/ensure-port-free.js && node --watch src/index.js",
+    "start": "node src/index.js",
+    "db:init": "node src/db-init.js",
+    "db:migrate-payment": "node src/migrate-payment.js",
+    "db:sanitize-stores": "node src/sanitize-company-stores.js",
+    "db:seed": "node src/seed.js",
+    "admin:ensure": "node src/ensure-admin.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}

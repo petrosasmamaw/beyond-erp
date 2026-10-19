@@ -4,82 +4,74 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Luwak Coffee Addis Ababa Brand Colors */
-  --coffee-brown: #3E2723;
-  --coffee-brown-light: #5D4037;
-  --gold-accent: #D4AF37;
-  --gold-accent-light: #E8C547;
-  --cream: #F5F5DC;
-  --warm-white: #FAFAF8;
-  
-  --background: #FAFAF8;
-  --foreground: #3E2723;
-  --card: #FFFFFF;
-  --card-foreground: #3E2723;
-  --popover: #FFFFFF;
-  --popover-foreground: #3E2723;
-  --primary: #3E2723;
-  --primary-foreground: #FFFFFF;
-  --secondary: #F5F5DC;
-  --secondary-foreground: #3E2723;
-  --muted: #F5F5DC;
-  --muted-foreground: #5D4037;
-  --accent: #D4AF37;
-  --accent-foreground: #3E2723;
-  --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
-  --border: #E5E5E5;
-  --input: #E5E5E5;
-  --ring: #D4AF37;
-  --chart-1: #3E2723;
-  --chart-2: #D4AF37;
-  --chart-3: #5D4037;
-  --chart-4: #8D6E63;
-  --chart-5: #A1887F;
-  --radius: 0.625rem;
-  --sidebar: #3E2723;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #D4AF37;
-  --sidebar-primary-foreground: #3E2723;
-  --sidebar-accent: #5D4037;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #5D4037;
-  --sidebar-ring: #D4AF37;
+  --brand-blue: #0033ad;
+  --brand-blue-dark: #002a8c;
+  --brand-blue-light: #1e4bb8;
+  --brand-surface: #f4f7ff;
+
+  --background: #f4f7ff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --popover: #ffffff;
+  --popover-foreground: #0f172a;
+  --primary: #0033ad;
+  --primary-foreground: #ffffff;
+  --secondary: #e8eeff;
+  --secondary-foreground: #0033ad;
+  --muted: #eef2ff;
+  --muted-foreground: #475569;
+  --accent: #0033ad;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #dbe4ff;
+  --input: #dbe4ff;
+  --ring: #0033ad;
+  --chart-1: #0033ad;
+  --chart-2: #1e4bb8;
+  --chart-3: #64748b;
+  --chart-4: #94a3b8;
+  --chart-5: #cbd5e1;
+  --radius: 0.5rem;
+  --sidebar: #0033ad;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #0033ad;
+  --sidebar-accent: #1e4bb8;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #1e4bb8;
+  --sidebar-ring: #ffffff;
 }
 
 .dark {
-  --background: #1A1A1A;
-  --foreground: #F5F5DC;
-  --card: #2D2D2D;
-  --card-foreground: #F5F5DC;
-  --popover: #2D2D2D;
-  --popover-foreground: #F5F5DC;
-  --primary: #D4AF37;
-  --primary-foreground: #3E2723;
-  --secondary: #3E2723;
-  --secondary-foreground: #F5F5DC;
-  --muted: #3E2723;
-  --muted-foreground: #A1887F;
-  --accent: #D4AF37;
-  --accent-foreground: #3E2723;
-  --destructive: #DC2626;
-  --destructive-foreground: #FFFFFF;
-  --border: #3E2723;
-  --input: #3E2723;
-  --ring: #D4AF37;
-  --chart-1: #D4AF37;
-  --chart-2: #8D6E63;
-  --chart-3: #A1887F;
-  --chart-4: #BCAAA4;
-  --chart-5: #D7CCC8;
-  --sidebar: #1A1A1A;
-  --sidebar-foreground: #F5F5DC;
-  --sidebar-primary: #D4AF37;
-  --sidebar-primary-foreground: #3E2723;
-  --sidebar-accent: #3E2723;
-  --sidebar-accent-foreground: #F5F5DC;
-  --sidebar-border: #3E2723;
-  --sidebar-ring: #D4AF37;
+  --background: #0b1220;
+  --foreground: #f1f5f9;
+  --card: #111827;
+  --card-foreground: #f1f5f9;
+  --popover: #111827;
+  --popover-foreground: #f1f5f9;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #1e293b;
+  --secondary-foreground: #f1f5f9;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #3b82f6;
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #1e293b;
+  --input: #1e293b;
+  --ring: #3b82f6;
+  --sidebar: #0b1220;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #3b82f6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1e293b;
+  --sidebar-accent-foreground: #f1f5f9;
+  --sidebar-border: #1e293b;
+  --sidebar-ring: #3b82f6;
 }
 
 @theme inline {
@@ -121,14 +113,9 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
-  
-  /* Custom Luwak Coffee colors */
-  --color-coffee: #3E2723;
-  --color-coffee-light: #5D4037;
-  --color-gold: #D4AF37;
-  --color-gold-light: #E8C547;
-  --color-cream: #F5F5DC;
-  --color-warm-white: #FAFAF8;
+  --color-brand: #0033ad;
+  --color-brand-light: #1e4bb8;
+  --color-brand-surface: #f4f7ff;
 }
 
 @layer base {
@@ -140,26 +127,24 @@
   }
 }
 
-/* Custom scrollbar for POS */
 .pos-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
 
 .pos-scrollbar::-webkit-scrollbar-track {
-  background: var(--cream);
+  background: var(--brand-surface);
   border-radius: 3px;
 }
 
 .pos-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--coffee-brown-light);
+  background: var(--brand-blue-light);
   border-radius: 3px;
 }
 
 .pos-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--coffee-brown);
+  background: var(--brand-blue);
 }
 
-/* Touch-friendly styles for tablet */
 @media (pointer: coarse) {
   button, .touchable {
     min-height: 44px;
@@ -167,25 +152,22 @@
   }
 }
 
-/* Mobile optimizations */
 @media (max-width: 768px) {
   html {
     font-size: 14px;
   }
-  
+
   input, select, textarea {
-    font-size: 16px; /* Prevents iOS zoom on focus */
+    font-size: 16px;
   }
 }
 
-/* Safe area padding for mobile devices */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
   .safe-area-bottom {
     padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
-/* Smooth animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -196,16 +178,6 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes scaleIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
-}
-
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out;
 }
@@ -214,15 +186,6 @@
   animation: slideUp 0.4s ease-out;
 }
 
-.animate-scaleIn {
-  animation: scaleIn 0.3s ease-out;
-}
-
-.animate-pulse-gold {
-  animation: pulse-gold 2s infinite;
-}
-
-/* Hide scrollbar utility */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -230,12 +193,4 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
-}
-
-/* Active state for touch devices */
-@media (hover: none) {
-  .touch-active:active {
-    transform: scale(0.98);
-    opacity: 0.9;
-  }
 }

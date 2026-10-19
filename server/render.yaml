@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: beyond-solution-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install && npm run db:init && npm run db:seed
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_ORIGINS
+        sync: false

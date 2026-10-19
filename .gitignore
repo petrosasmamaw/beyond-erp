@@ -8,8 +8,20 @@ __v0_jsx-dev-runtime.ts
 
 # Environment variables
 .env*.local
+server/.env
 
 # Common ignores
 node_modules
 .next/
 .DS_Store
+data/store.json
+data/platform.json
+data/companies/
+data/uploads/
+server/uploads/
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
