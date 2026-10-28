@@ -1375,79 +1375,492 @@
           .footer-top {
             grid-template-columns: 1fr 1fr;
           }
+          .telecom-features-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
 
         @media (max-width: 880px) {
           .landing-shell {
-            padding: 10px;
+            padding: 8px;
+          }
+          .landing-card {
+            border-radius: 20px;
+            overflow-x: hidden;
           }
           .nav-links {
             display: none;
           }
           .landing-nav {
             grid-template-columns: 1fr auto;
-            padding: 18px 22px;
+            padding: 16px 20px;
+          }
+          .nav-brand {
+            font-size: 20px;
           }
           .hero {
             grid-template-columns: 1fr;
-            padding: 0 22px;
+            padding: 0 18px;
             min-height: auto;
+            gap: 20px;
           }
           .hero-left {
-            padding: 30px 0 20px;
+            padding: 24px 0 10px;
+          }
+          .hero-eyebrow {
+            font-size: 11px;
+            margin-bottom: 12px;
+          }
+          .hero-title {
+            font-size: clamp(38px, 7.5vw, 52px);
+            line-height: 1.05;
+          }
+          .hero-copy {
+            font-size: 15px;
+            line-height: 1.55;
+            margin-bottom: 24px;
+          }
+          .hero-proof {
+            flex-wrap: wrap;
+            gap: 16px;
+            padding-top: 20px;
           }
           .hero-right {
-            margin: 0 0 22px;
-            border-radius: 22px;
-            min-height: 440px;
+            margin: 0 0 20px;
+            border-radius: 24px;
+            min-height: 480px;
+            padding: 26px 20px 0;
           }
-          .floating-card {
-            right: 10px;
+          .hero-right-header {
+            gap: 16px;
           }
+          .hero-checklist {
+            gap: 7px;
+          }
+          .hero-check-item {
+            font-size: 12.5px;
+          }
+          .hero-highlight-badges {
+            gap: 9px;
+          }
+          .hero-highlight-item {
+            font-size: 13px;
+          }
+          .hero-mockup-wrapper {
+            width: 94%;
+            max-width: 460px;
+          }
+          .hero-pricing-badge {
+            right: 20px;
+            bottom: 18px;
+            gap: 10px;
+          }
+          .hero-pricing-title {
+            font-size: 12px;
+          }
+          .hero-pricing-cost {
+            font-size: 17px;
+          }
+          .hero-pricing-sub {
+            font-size: 10.5px;
+          }
+
+          /* Telecom Partner on Tablet */
+          .telecom-partner-section {
+            padding: 28px 18px;
+          }
+          .telecom-partner-card {
+            padding: 26px 22px;
+            border-radius: 20px;
+          }
+          .telecom-partner-header {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-bottom: 20px;
+          }
+          .telecom-title {
+            font-size: clamp(24px, 4.5vw, 30px);
+          }
+          .telecom-features-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+          }
+
+          /* Sectors Band */
           .sectors-band,
           .features-band {
-            padding: 72px 22px;
+            padding: 64px 18px;
           }
           .sectors-band::before,
           .features-band::before {
             display: none;
           }
+          .sectors-top {
+            gap: 24px;
+            margin-bottom: 32px;
+          }
+          .sectors-top h2 {
+            font-size: clamp(34px, 6vw, 48px);
+          }
+          .sectors-stats {
+            gap: 24px;
+          }
+          .stat-num {
+            font-size: 30px;
+          }
+          .sectors-feature {
+            gap: 14px;
+          }
+          .spotlight-card {
+            padding: 28px 24px;
+            min-height: auto;
+          }
+          .spotlight-card h3 {
+            font-size: 32px;
+          }
+
+          /* Features Band */
+          .features-head {
+            gap: 20px;
+            margin-bottom: 32px;
+          }
+          .features-head h2 {
+            font-size: clamp(34px, 6vw, 48px);
+          }
+
+          /* CTA */
+          .cta-band {
+            padding: 20px 18px;
+          }
+          .cta-card {
+            border-radius: 20px;
+          }
           .cta-left,
           .cta-right {
-            padding: 40px 28px;
+            padding: 36px 24px;
+          }
+          .cta-left h2 {
+            font-size: clamp(32px, 5.5vw, 44px);
+          }
+
+          /* Footer */
+          .footer {
+            padding: 36px 18px 28px;
           }
         }
 
         @media (max-width: 560px) {
+          .landing-shell {
+            padding: 4px;
+          }
+          .landing-card {
+            border-radius: 16px;
+          }
+          .landing-nav {
+            padding: 14px 16px;
+          }
+          .nav-brand {
+            font-size: 19px;
+          }
+          .nav-signin {
+            display: none;
+          }
+          .nav-cta {
+            padding: 8px 14px;
+            font-size: 13px;
+          }
+
+          /* Hero Mobile */
+          .hero {
+            padding: 0 14px;
+            gap: 16px;
+          }
+          .hero-left {
+            padding: 18px 0 8px;
+          }
+          .hero-title {
+            font-size: 34px;
+            line-height: 1.06;
+          }
+          .hero-copy {
+            font-size: 14.5px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+          }
+          .hero-actions {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+            margin-bottom: 26px;
+          }
+          .hero-actions .btn-primary,
+          .hero-actions .btn-link {
+            width: 100%;
+            justify-content: center;
+            padding: 13px 20px;
+          }
+          .hero-proof {
+            gap: 12px;
+            font-size: 12px;
+            padding-top: 16px;
+          }
+          .hero-right {
+            min-height: 440px;
+            padding: 20px 14px 0;
+            border-radius: 20px;
+            margin: 0 0 14px;
+          }
+          .hero-right-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+          }
+          .hero-checklist {
+            gap: 6px;
+          }
+          .hero-check-item {
+            font-size: 11.5px;
+            gap: 6px;
+          }
+          .hero-highlight-badges {
+            gap: 8px;
+          }
+          .hero-highlight-item {
+            font-size: 12px;
+            gap: 6px;
+          }
+          .hero-highlight-icon-box {
+            width: 22px;
+            height: 22px;
+          }
+          .ai-icon-box {
+            width: 20px;
+            height: 20px;
+          }
+          .hero-mockup-wrapper {
+            width: 96%;
+            max-width: 370px;
+            right: -8px;
+          }
+          .hero-pricing-badge {
+            right: 12px;
+            bottom: 12px;
+            gap: 7px;
+          }
+          .hero-pricing-icon svg {
+            width: 22px;
+            height: 22px;
+          }
+          .hero-pricing-title {
+            font-size: 11px;
+          }
+          .hero-pricing-cost {
+            font-size: 15px;
+          }
+          .hero-pricing-sub {
+            font-size: 9.5px;
+          }
+
+          /* Telecom Partner on Phone */
+          .telecom-partner-section {
+            padding: 20px 14px;
+          }
+          .telecom-partner-card {
+            padding: 20px 16px;
+            border-radius: 18px;
+          }
+          .telecom-logo-wrapper {
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
+          }
+          .telecom-brand-name {
+            font-size: 16px;
+          }
+          .telecom-status {
+            font-size: 11px;
+          }
+          .telecom-title {
+            font-size: 22px;
+            line-height: 1.15;
+          }
+          .telecom-desc {
+            font-size: 13.5px;
+          }
+          .telecom-features-grid {
+            grid-template-columns: 1fr;
+            gap: 10px;
+          }
+          .telecom-feature-item {
+            padding: 18px 16px;
+            border-radius: 16px;
+          }
+          .telecom-feature-item h3 {
+            font-size: 15px;
+          }
+          .telecom-feature-item p {
+            font-size: 12.5px;
+          }
+          .telecom-metrics-strip {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 11.5px;
+          }
+
+          /* Sectors Phone */
+          .sectors-band,
+          .features-band {
+            padding: 48px 14px;
+          }
+          .sectors-top h2 {
+            font-size: 32px;
+          }
+          .sectors-top-right p {
+            font-size: 14px;
+          }
+          .sectors-stats {
+            gap: 16px;
+            justify-content: space-between;
+          }
+          .stat-num {
+            font-size: 26px;
+          }
+          .stat-label {
+            font-size: 10.5px;
+          }
+          .spotlight-card {
+            padding: 22px 18px;
+            border-radius: 18px;
+          }
+          .spotlight-card h3 {
+            font-size: 26px;
+          }
+          .spotlight-card p {
+            font-size: 13px;
+            margin-bottom: 20px;
+          }
+          .spotlight-modules {
+            gap: 6px;
+            margin-bottom: 20px;
+          }
+          .spotlight-module {
+            font-size: 11px;
+            padding: 4px 9px;
+          }
           .sectors-side,
           .sectors-rest {
             grid-template-columns: 1fr;
+            gap: 10px;
+          }
+          .sector-card {
+            padding: 16px 14px;
+            gap: 12px;
+            border-radius: 16px;
+          }
+          .sector-icon {
+            width: 44px;
+            height: 44px;
+            font-size: 19px;
+            border-radius: 12px;
+          }
+          .sector-card h3 {
+            font-size: 15px;
+          }
+          .sector-card p {
+            font-size: 12px;
+          }
+          .sector-arrow {
+            width: 32px;
+            height: 32px;
+          }
+
+          /* Features / Bento Phone */
+          .features-head h2 {
+            font-size: 32px;
+          }
+          .features-head p {
+            font-size: 14px;
           }
           .bento {
             grid-template-columns: 1fr;
+            gap: 10px;
           }
           .bento-large,
           .bento-medium,
           .bento-wide {
             grid-column: span 1;
           }
-          .footer-top {
-            grid-template-columns: 1fr;
-            gap: 28px;
+          .bento-card {
+            padding: 20px 16px;
+            border-radius: 18px;
           }
-          .hero-proof {
-            gap: 18px;
+          .bento-large h3 {
+            font-size: 24px;
           }
-          .hero-pricing-badge {
-            right: 18px;
-            bottom: 16px;
+          .bento-large p {
+            font-size: 13px;
+          }
+          .bento-card h3 {
+            font-size: 15.5px;
+          }
+          .bento-card p {
+            font-size: 12.5px;
+          }
+
+          /* CTA Phone */
+          .cta-band {
+            padding: 14px;
+          }
+          .cta-left {
+            padding: 26px 16px 20px;
+          }
+          .cta-left h2 {
+            font-size: 30px;
+          }
+          .cta-left p {
+            font-size: 13.5px;
+            margin: 14px 0 20px;
+          }
+          .cta-actions {
+            flex-direction: column;
+            align-items: stretch;
             gap: 8px;
           }
-          .hero-pricing-cost {
-            font-size: 16px;
+          .cta-actions button {
+            width: 100%;
+            justify-content: center;
           }
-          .nav-signin {
-            display: none;
+          .cta-right {
+            padding: 26px 16px;
+          }
+          .cta-steps {
+            gap: 14px;
+          }
+
+          /* Footer Phone */
+          .footer {
+            padding: 28px 14px 24px;
+          }
+          .footer-top {
+            grid-template-columns: 1fr;
+            gap: 22px;
+            margin-bottom: 24px;
+          }
+          .footer-brand-block h3 {
+            font-size: 24px;
+          }
+          .footer-bottom {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+            padding-top: 18px;
+          }
+          .footer-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
           }
         }
       

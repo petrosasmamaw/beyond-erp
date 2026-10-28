@@ -193,10 +193,6 @@ export default function LandingPage() {
                     />
                   </div>
                   <div className="telecom-brand-meta">
-                    <div className="telecom-badge">
-                      <ShieldCheck size={13} className="telecom-badge-icon" />
-                      <span>Official Strategic Partner</span>
-                    </div>
                     <div className="telecom-brand-name">
                       ethio telecom <span>· telebirr</span>
                     </div>
