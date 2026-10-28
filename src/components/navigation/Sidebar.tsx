@@ -191,17 +191,41 @@ export function Sidebar({
         }}
       >
         {!collapsed && (
-          <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
-            <div style={{ fontWeight: 800, fontSize: 18, color: text, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
-              BeyondERP
-            </div>
-            <div style={{ fontSize: 11, color: muted, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", maxWidth: 160 }}>
-              {companyName}
+          <div style={{ display: "flex", alignItems: "center", gap: 10, minWidth: 0 }}>
+            <img
+              src="/logo.png"
+              alt="BeyondERP"
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                objectFit: "cover",
+                flexShrink: 0,
+                boxShadow: "0 2px 8px rgba(37,99,235,0.25)"
+              }}
+            />
+            <div style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
+              <div style={{ fontWeight: 800, fontSize: 17, color: text, letterSpacing: "-0.02em", lineHeight: 1.1 }}>
+                BeyondERP
+              </div>
+              <div style={{ fontSize: 11, color: muted, overflow: "hidden", whiteSpace: "nowrap", textOverflow: "ellipsis", maxWidth: 130 }}>
+                {companyName}
+              </div>
             </div>
           </div>
         )}
         {collapsed && (
-          <div style={{ width: 0, height: 0, display: "none" }} />
+          <img
+            src="/logo.png"
+            alt="BeyondERP"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              objectFit: "cover",
+              flexShrink: 0
+            }}
+          />
         )}
         <button
           onClick={onToggle}

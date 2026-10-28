@@ -23,6 +23,7 @@ import { SectorRecordModal } from "@/components/modals/SectorRecordModal";
 import { DomainWorkflowModal } from "@/components/modals/DomainWorkflowModal";
 import { FailedOpsModal } from "@/components/modals/FailedOpsModal";
 import { AIAssistantSidebar } from "@/components/AIAssistantSidebar";
+import { Footer } from "@/components/navigation/Footer";
 
 const SIDEBAR_KEY = "beyond_sidebar_collapsed";
 
@@ -96,6 +97,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     return (
       <main className="splash-screen" aria-label="Loading">
         <div className="splash-card">
+          <img
+            src="/logo.png"
+            alt="BeyondERP"
+            style={{ width: 52, height: 52, borderRadius: "50%", objectFit: "cover", margin: "0 auto 12px", display: "block" }}
+          />
           <h1 style={{ fontWeight: 800, fontSize: 24, letterSpacing: "-0.02em" }}>BeyondERP</h1>
           <p>Loading workspace…</p>
           <div className="splash-progress" aria-hidden="true"><span /></div>
@@ -211,6 +217,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
           <section className="page-body">
             {children}
+            <Footer inApp />
           </section>
 
           <BottomNav language={language} />

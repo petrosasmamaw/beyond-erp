@@ -6,7 +6,6 @@ import {
   ArrowRight,
   ArrowUpRight,
   FileText,
-  Languages,
   RefreshCw,
   ShieldCheck,
   Users,
@@ -18,6 +17,8 @@ import {
   BarChart3,
   Lock,
   Globe2,
+  CreditCard,
+  Building2,
 } from "lucide-react";
 import { sectorDefinitions } from "@/features/erp/config";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -46,1191 +47,13 @@ export default function LandingPage() {
 
   return (
     <main className="landing-shell" style={{ background: pageBg, color: ink }}>
-      <style jsx>{`
-        .landing-shell {
-          min-height: 100vh;
-          font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-          padding: 18px;
-        }
-
-        .landing-card {
-          max-width: 1320px;
-          margin: 0 auto;
-          background: ${cardBg};
-          border-radius: 22px;
-          overflow: hidden;
-          box-shadow: ${dark
-            ? "0 30px 80px rgba(0,0,0,0.45)"
-            : "0 30px 80px rgba(30,58,138,0.10)"};
-        }
-
-        /* ===== NAV ===== */
-        .landing-nav {
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          align-items: center;
-          gap: 16px;
-          padding: 22px 36px;
-        }
-
-        .nav-brand {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          color: ${ink};
-          font-family: "Instrument Serif", Georgia, serif;
-          font-size: 26px;
-          font-weight: 400;
-          letter-spacing: -0.01em;
-        }
-
-        .nav-brand .dot {
-          color: ${blue};
-        }
-
-        .nav-links {
-          display: flex;
-          align-items: center;
-          gap: 30px;
-          justify-self: center;
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .nav-link {
-          color: ${inkSoft};
-          text-decoration: none;
-          transition: color 0.15s ease;
-        }
-
-        .nav-link:hover {
-          color: ${blue};
-        }
-
-        .nav-actions {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          justify-self: end;
-        }
-
-        .nav-signin {
-          background: none;
-          border: 0;
-          color: ${ink};
-          font-size: 14px;
-          font-weight: 600;
-          padding: 8px 14px;
-          cursor: pointer;
-        }
-
-        .nav-cta {
-          background: ${ink};
-          color: ${cardBg};
-          border: 0;
-          border-radius: 999px;
-          padding: 10px 20px;
-          font-size: 14px;
-          font-weight: 600;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          transition: transform 0.15s ease;
-        }
-
-        .nav-cta:hover {
-          transform: translateY(-1px);
-        }
-
-        /* ===== HERO (unchanged) ===== */
-        .hero {
-          display: grid;
-          grid-template-columns: 1.05fr 1fr;
-          gap: 0;
-          padding: 0 0 0 36px;
-          position: relative;
-          min-height: 580px;
-        }
-
-        .hero-left {
-          padding: 30px 40px 60px 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .hero-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 22px;
-          color: ${blue};
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-        }
-
-        .hero-eyebrow::before {
-          content: "";
-          width: 22px;
-          height: 1.5px;
-          background: ${blue};
-        }
-
-        .hero-title {
-          margin: 0;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: clamp(44px, 5.4vw, 72px);
-          line-height: 1.02;
-          letter-spacing: -0.02em;
-          color: ${ink};
-        }
-
-        .hero-title em {
-          font-style: italic;
-          color: ${blue};
-        }
-
-        .hero-copy {
-          margin: 26px 0 0;
-          max-width: 480px;
-          color: ${muted};
-          font-size: 15px;
-          line-height: 1.65;
-        }
-
-        .hero-actions {
-          margin-top: 32px;
-          display: flex;
-          align-items: center;
-          gap: 18px;
-          flex-wrap: wrap;
-        }
-
-        .btn-primary {
-          background: ${blue};
-          color: white;
-          border: 0;
-          border-radius: 10px;
-          padding: 14px 24px;
-          font-size: 14px;
-          font-weight: 700;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
-          transition: transform 0.15s ease, box-shadow 0.15s ease;
-        }
-
-        .btn-primary:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 12px 26px rgba(37, 99, 235, 0.35);
-        }
-
-        .btn-link {
-          background: none;
-          border: 0;
-          color: ${ink};
-          font-size: 14px;
-          font-weight: 600;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          padding: 8px 4px;
-          border-bottom: 1.5px solid ${ink};
-        }
-
-        .hero-proof {
-          margin-top: 48px;
-          display: flex;
-          align-items: center;
-          gap: 32px;
-          flex-wrap: wrap;
-          color: ${muted};
-        }
-
-        .proof-label {
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-        }
-
-        .proof-logo {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-weight: 700;
-          font-size: 15px;
-          opacity: 0.7;
-        }
-
-        .hero-right {
-          position: relative;
-          background: linear-gradient(160deg, ${blueDeep} 0%, #1d4ed8 55%, #0f172a 100%);
-          border-top-left-radius: 28px;
-          border-bottom-left-radius: 28px;
-          padding: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          margin: 18px 0 18px 18px;
-        }
-
-        .hero-right::before {
-          content: "";
-          position: absolute;
-          top: -80px;
-          right: -80px;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(147, 197, 253, 0.18) 0%, transparent 70%);
-        }
-
-        .hero-right::after {
-          content: "";
-          position: absolute;
-          bottom: -60px;
-          left: -40px;
-          width: 220px;
-          height: 220px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
-        }
-
-        .floating-badge {
-          position: absolute;
-          top: 28px;
-          left: 28px;
-          background: ${ink};
-          color: ${cardBg};
-          border-radius: 999px;
-          padding: 8px 14px 8px 8px;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 12px;
-          font-weight: 700;
-          z-index: 3;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-        }
-
-        .floating-badge .avatars {
-          display: flex;
-        }
-
-        .avatar {
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          border: 2px solid ${ink};
-          margin-left: -8px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 9px;
-          font-weight: 800;
-        }
-
-        .avatar:first-child {
-          margin-left: 0;
-        }
-
-        .mockup {
-          position: relative;
-          z-index: 2;
-          width: 100%;
-          max-width: 460px;
-          background: ${surface};
-          border-radius: 18px;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-          overflow: hidden;
-        }
-
-        .mockup-top {
-          padding: 16px 18px;
-          border-bottom: 1px solid ${borderSoft};
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .mockup-top-left {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .mockup-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-        }
-
-        .mockup-body {
-          padding: 20px;
-          display: grid;
-          gap: 14px;
-        }
-
-        .mockup-metric-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-        }
-
-        .mockup-metric {
-          background: ${surfaceSoft};
-          border-radius: 12px;
-          padding: 14px;
-          border: 1px solid ${borderSoft};
-        }
-
-        .mockup-metric-label {
-          color: ${muted};
-          font-size: 10px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .mockup-metric-value {
-          color: ${ink};
-          font-size: 20px;
-          font-weight: 700;
-          margin-top: 6px;
-          display: flex;
-          align-items: baseline;
-          gap: 6px;
-        }
-
-        .mockup-metric-delta {
-          color: #10b981;
-          font-size: 11px;
-          font-weight: 700;
-        }
-
-        .mockup-chart {
-          background: ${surfaceSoft};
-          border-radius: 12px;
-          border: 1px solid ${borderSoft};
-          padding: 14px;
-        }
-
-        .chart-bars {
-          display: flex;
-          align-items: flex-end;
-          gap: 6px;
-          height: 70px;
-          margin-top: 10px;
-        }
-
-        .chart-bar {
-          flex: 1;
-          background: ${blue};
-          border-radius: 4px 4px 0 0;
-          opacity: 0.85;
-        }
-
-        .mockup-list-item {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 10px 0;
-          border-top: 1px solid ${borderSoft};
-        }
-
-        .mockup-list-item:first-child {
-          border-top: 0;
-          padding-top: 0;
-        }
-
-        .floating-card {
-          position: absolute;
-          bottom: 40px;
-          right: -10px;
-          z-index: 3;
-          background: ${cardBg};
-          border-radius: 14px;
-          padding: 14px 16px;
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          min-width: 200px;
-        }
-
-        .floating-card-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: 10px;
-          background: #dcfce7;
-          color: #16a34a;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        /* ===== SECTORS — EDITORIAL ===== */
-        .sectors-band {
-          padding: 110px 36px 90px;
-          border-top: 1px solid ${borderSoft};
-          position: relative;
-        }
-
-        .sectors-band::before {
-          content: "002";
-          position: absolute;
-          top: 40px;
-          right: 36px;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-size: 110px;
-          color: ${dark ? "rgba(37,99,235,0.06)" : "rgba(37,99,235,0.05)"};
-          line-height: 1;
-          letter-spacing: -0.02em;
-          pointer-events: none;
-        }
-
-        .sectors-inner {
-          max-width: 1180px;
-          margin: 0 auto;
-          position: relative;
-        }
-
-        .sectors-top {
-          display: grid;
-          grid-template-columns: 1fr 1.1fr;
-          gap: 56px;
-          align-items: end;
-          margin-bottom: 56px;
-        }
-
-        .sectors-top h2 {
-          margin: 14px 0 0;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: clamp(40px, 5vw, 64px);
-          line-height: 1.02;
-          letter-spacing: -0.02em;
-          color: ${ink};
-        }
-
-        .sectors-top h2 em {
-          font-style: italic;
-          color: ${blue};
-        }
-
-        .sectors-top-right {
-          padding-bottom: 12px;
-        }
-
-        .sectors-top-right p {
-          margin: 0 0 20px;
-          color: ${muted};
-          font-size: 15px;
-          line-height: 1.65;
-        }
-
-        .sectors-stats {
-          display: flex;
-          gap: 32px;
-          padding-top: 20px;
-          border-top: 1px solid ${border};
-        }
-
-        .stat-num {
-          font-family: "Instrument Serif", Georgia, serif;
-          font-size: 36px;
-          line-height: 1;
-          color: ${ink};
-          margin-bottom: 4px;
-        }
-
-        .stat-label {
-          color: ${muted};
-          font-size: 12px;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-        }
-
-        .sectors-feature {
-          display: grid;
-          grid-template-columns: 1.15fr 1fr;
-          gap: 20px;
-          margin-bottom: 20px;
-        }
-
-        .spotlight-card {
-          background: linear-gradient(160deg, ${blueDeep} 0%, #1d4ed8 60%, #0f172a 100%);
-          border-radius: 20px;
-          padding: 36px;
-          color: white;
-          position: relative;
-          overflow: hidden;
-          cursor: pointer;
-          min-height: 360px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          transition: transform 0.25s ease;
-          border: 0;
-          text-align: left;
-        }
-
-        .spotlight-card:hover {
-          transform: translateY(-3px);
-        }
-
-        .spotlight-card::after {
-          content: "";
-          position: absolute;
-          top: -100px;
-          right: -80px;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(147, 197, 253, 0.22) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .spotlight-tag {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(8px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          color: white;
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          padding: 6px 12px;
-          border-radius: 999px;
-          align-self: flex-start;
-        }
-
-        .spotlight-card h3 {
-          position: relative;
-          margin: 22px 0 14px;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: 40px;
-          line-height: 1;
-          letter-spacing: -0.01em;
-        }
-
-        .spotlight-card p {
-          position: relative;
-          margin: 0 0 28px;
-          color: rgba(219, 234, 254, 0.85);
-          font-size: 14px;
-          line-height: 1.6;
-          max-width: 380px;
-        }
-
-        .spotlight-modules {
-          position: relative;
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin-bottom: 26px;
-        }
-
-        .spotlight-module {
-          background: rgba(255, 255, 255, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.15);
-          border-radius: 8px;
-          padding: 6px 12px;
-          font-size: 12px;
-          font-weight: 600;
-          color: rgba(219, 234, 254, 0.95);
-        }
-
-        .spotlight-go {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 14px;
-          font-weight: 700;
-          color: white;
-          padding-bottom: 4px;
-          border-bottom: 1.5px solid rgba(255, 255, 255, 0.4);
-          align-self: flex-start;
-        }
-
-        .sectors-side {
-          display: grid;
-          grid-template-rows: 1fr 1fr;
-          gap: 20px;
-        }
-
-        .sector-card {
-          background: ${surface};
-          border: 1px solid ${border};
-          border-radius: 20px;
-          padding: 28px;
-          text-align: left;
-          cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-          display: grid;
-          grid-template-columns: auto 1fr auto;
-          align-items: center;
-          gap: 20px;
-          position: relative;
-        }
-
-        .sector-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 18px 40px rgba(37, 99, 235, 0.12);
-          border-color: ${blue};
-        }
-
-        .sector-card:hover .sector-arrow {
-          background: ${blue};
-          color: white;
-          transform: rotate(-45deg);
-        }
-
-        .sector-icon {
-          width: 54px;
-          height: 54px;
-          border-radius: 14px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 22px;
-          flex-shrink: 0;
-        }
-
-        .sector-card h3 {
-          margin: 0 0 4px;
-          font-size: 17px;
-          font-weight: 700;
-          color: ${ink};
-        }
-
-        .sector-card p {
-          margin: 0;
-          color: ${muted};
-          font-size: 13px;
-          line-height: 1.5;
-        }
-
-        .sector-arrow {
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          background: ${surfaceSoft};
-          color: ${ink};
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          transition: all 0.2s ease;
-        }
-
-        .sectors-rest {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
-        }
-
-        /* ===== FEATURES — BENTO ===== */
-        .features-band {
-          padding: 110px 36px;
-          background: ${dark ? "#0a1220" : "#f4f6fb"};
-          position: relative;
-        }
-
-        .features-band::before {
-          content: "003";
-          position: absolute;
-          top: 40px;
-          left: 36px;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-size: 110px;
-          color: ${dark ? "rgba(37,99,235,0.06)" : "rgba(37,99,235,0.05)"};
-          line-height: 1;
-          letter-spacing: -0.02em;
-          pointer-events: none;
-        }
-
-        .features-inner {
-          max-width: 1180px;
-          margin: 0 auto;
-          position: relative;
-        }
-
-        .features-head {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 56px;
-          align-items: end;
-          margin-bottom: 48px;
-        }
-
-        .features-head h2 {
-          margin: 14px 0 0;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: clamp(40px, 5vw, 64px);
-          line-height: 1.02;
-          letter-spacing: -0.02em;
-          color: ${ink};
-        }
-
-        .features-head h2 em {
-          font-style: italic;
-          color: ${blue};
-        }
-
-        .features-head p {
-          margin: 0;
-          color: ${muted};
-          font-size: 15px;
-          line-height: 1.65;
-          padding-bottom: 12px;
-        }
-
-        .bento {
-          display: grid;
-          grid-template-columns: repeat(6, 1fr);
-          grid-auto-rows: minmax(180px, auto);
-          gap: 16px;
-        }
-
-        .bento-card {
-          background: ${surface};
-          border: 1px solid ${border};
-          border-radius: 20px;
-          padding: 28px;
-          display: flex;
-          flex-direction: column;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .bento-large {
-          grid-column: span 4;
-          grid-row: span 2;
-          background: linear-gradient(160deg, ${blueDeep} 0%, #1d4ed8 60%, #0f172a 100%);
-          color: white;
-          border-color: transparent;
-        }
-
-        .bento-large::after {
-          content: "";
-          position: absolute;
-          bottom: -120px;
-          right: -80px;
-          width: 320px;
-          height: 320px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(147, 197, 253, 0.22) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .bento-medium {
-          grid-column: span 2;
-          grid-row: span 1;
-        }
-
-        .bento-wide {
-          grid-column: span 3;
-          grid-row: span 1;
-        }
-
-        .bento-icon {
-          width: 48px;
-          height: 48px;
-          border-radius: 12px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 18px;
-        }
-
-        .bento-card h3 {
-          margin: 0 0 8px;
-          font-size: 17px;
-          font-weight: 700;
-          line-height: 1.25;
-        }
-
-        .bento-card p {
-          margin: 0;
-          font-size: 13px;
-          line-height: 1.55;
-        }
-
-        .bento-large h3 {
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: 32px;
-          line-height: 1.05;
-          margin: 24px 0 12px;
-          letter-spacing: -0.01em;
-        }
-
-        .bento-large p {
-          color: rgba(219, 234, 254, 0.85);
-          font-size: 14px;
-          line-height: 1.6;
-          max-width: 380px;
-        }
-
-        .bento-visual {
-          margin-top: auto;
-          position: relative;
-          z-index: 2;
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          padding-top: 28px;
-        }
-
-        .bento-pill {
-          background: rgba(255, 255, 255, 0.12);
-          backdrop-filter: blur(6px);
-          border: 1px solid rgba(255, 255, 255, 0.18);
-          border-radius: 999px;
-          padding: 8px 14px;
-          font-size: 12px;
-          font-weight: 600;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        /* ===== CTA ===== */
-        .cta-band {
-          padding: 36px;
-        }
-
-        .cta-card {
-          background: ${cardBg};
-          border: 1px solid ${border};
-          border-radius: 24px;
-          padding: 0;
-          color: ${ink};
-          position: relative;
-          overflow: hidden;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 380px;
-        }
-
-        .cta-left {
-          padding: 60px 56px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .cta-left h2 {
-          margin: 14px 0 0;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: clamp(38px, 4.8vw, 58px);
-          line-height: 1.02;
-          letter-spacing: -0.02em;
-          color: ${ink};
-        }
-
-        .cta-left h2 em {
-          font-style: italic;
-          color: ${blue};
-        }
-
-        .cta-left p {
-          margin: 22px 0 32px;
-          color: ${muted};
-          font-size: 15px;
-          line-height: 1.6;
-          max-width: 440px;
-        }
-
-        .cta-right {
-          background: linear-gradient(160deg, ${blueDeep} 0%, #1d4ed8 60%, #0f172a 100%);
-          padding: 50px;
-          position: relative;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .cta-right::before {
-          content: "";
-          position: absolute;
-          top: -100px;
-          right: -50px;
-          width: 320px;
-          height: 320px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(147, 197, 253, 0.22) 0%, transparent 70%);
-          pointer-events: none;
-        }
-
-        .cta-steps {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          gap: 18px;
-        }
-
-        .cta-step {
-          display: flex;
-          align-items: flex-start;
-          gap: 14px;
-          color: white;
-        }
-
-        .cta-step-num {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          background: rgba(255, 255, 255, 0.15);
-          backdrop-filter: blur(6px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-          font-weight: 700;
-          flex-shrink: 0;
-        }
-
-        .cta-step-content h4 {
-          margin: 6px 0 4px;
-          font-size: 15px;
-          font-weight: 700;
-        }
-
-        .cta-step-content p {
-          margin: 0;
-          color: rgba(219, 234, 254, 0.78);
-          font-size: 13px;
-          line-height: 1.5;
-        }
-
-        .cta-actions {
-          display: flex;
-          gap: 16px;
-          flex-wrap: wrap;
-          align-items: center;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-          padding: 48px 36px 36px;
-          border-top: 1px solid ${borderSoft};
-        }
-
-        .footer-top {
-          display: grid;
-          grid-template-columns: 1.4fr 1fr 1fr 1fr;
-          gap: 40px;
-          margin-bottom: 40px;
-        }
-
-        .footer-brand-block h3 {
-          margin: 14px 0 12px;
-          font-family: "Instrument Serif", Georgia, serif;
-          font-weight: 400;
-          font-size: 28px;
-          line-height: 1.1;
-          color: ${ink};
-          max-width: 280px;
-        }
-
-        .footer-brand-block p {
-          margin: 0;
-          color: ${muted};
-          font-size: 13px;
-          line-height: 1.55;
-          max-width: 280px;
-        }
-
-        .footer-col h4 {
-          margin: 0 0 16px;
-          font-size: 12px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          color: ${muted};
-        }
-
-        .footer-col a {
-          display: block;
-          color: ${ink};
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 500;
-          margin-bottom: 10px;
-          transition: color 0.15s ease;
-        }
-
-        .footer-col a:hover {
-          color: ${blue};
-        }
-
-        .footer-bottom {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding-top: 28px;
-          border-top: 1px solid ${borderSoft};
-          gap: 16px;
-          flex-wrap: wrap;
-        }
-
-        .footer-meta {
-          display: flex;
-          align-items: center;
-          gap: 18px;
-          color: ${muted};
-          font-size: 13px;
-          font-weight: 500;
-        }
-
-        .admin-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          padding: 6px 12px;
-          border: 1px solid ${border};
-          border-radius: 999px;
-          background: ${surface};
-          color: ${ink};
-          text-decoration: none;
-          font-size: 12px;
-          font-weight: 700;
-        }
-
-        .admin-link .sa-tag {
-          background: ${blue};
-          color: white;
-          border-radius: 999px;
-          padding: 2px 7px;
-          font-size: 10px;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1080px) {
-          .sectors-top,
-          .sectors-feature,
-          .features-head,
-          .cta-card {
-            grid-template-columns: 1fr;
-          }
-          .sectors-side {
-            grid-template-rows: auto;
-            grid-template-columns: 1fr 1fr;
-          }
-          .sectors-rest {
-            grid-template-columns: repeat(2, 1fr);
-          }
-          .bento {
-            grid-template-columns: repeat(4, 1fr);
-          }
-          .bento-large {
-            grid-column: span 4;
-          }
-          .bento-medium {
-            grid-column: span 2;
-          }
-          .bento-wide {
-            grid-column: span 2;
-          }
-          .footer-top {
-            grid-template-columns: 1fr 1fr;
-          }
-        }
-
-        @media (max-width: 880px) {
-          .landing-shell {
-            padding: 10px;
-          }
-          .nav-links {
-            display: none;
-          }
-          .landing-nav {
-            grid-template-columns: 1fr auto;
-            padding: 18px 22px;
-          }
-          .hero {
-            grid-template-columns: 1fr;
-            padding: 0 22px;
-            min-height: auto;
-          }
-          .hero-left {
-            padding: 30px 0 20px;
-          }
-          .hero-right {
-            margin: 0 0 22px;
-            border-radius: 22px;
-            min-height: 440px;
-          }
-          .floating-card {
-            right: 10px;
-          }
-          .sectors-band,
-          .features-band {
-            padding: 72px 22px;
-          }
-          .sectors-band::before,
-          .features-band::before {
-            display: none;
-          }
-          .cta-left,
-          .cta-right {
-            padding: 40px 28px;
-          }
-        }
-
-        @media (max-width: 560px) {
-          .sectors-side,
-          .sectors-rest {
-            grid-template-columns: 1fr;
-          }
-          .bento {
-            grid-template-columns: 1fr;
-          }
-          .bento-large,
-          .bento-medium,
-          .bento-wide {
-            grid-column: span 1;
-          }
-          .footer-top {
-            grid-template-columns: 1fr;
-            gap: 28px;
-          }
-          .hero-proof {
-            gap: 18px;
-          }
-          .nav-signin {
-            display: none;
-          }
-        }
-      `}</style>
+      
 
       <div className="landing-card">
         {/* ============= NAV ============= */}
         <nav className="landing-nav">
-          <a className="nav-brand" href="#" style={{ textDecoration: "none", fontFamily: '"Inter Tight", sans-serif', fontWeight: 700, fontSize: 24, letterSpacing: "-0.02em" }}>
+          <a className="nav-brand" href="#" style={{ textDecoration: "none", fontFamily: '"Inter Tight", sans-serif', fontWeight: 700, fontSize: 22, letterSpacing: "-0.02em", display: "flex", alignItems: "center", gap: 10 }}>
+            <img src="/logo.png" alt="BeyondERP" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover" }} />
             Beyond ERP
           </a>
 
@@ -1279,9 +102,6 @@ export default function LandingPage() {
               <span className="proof-label">Certified</span>
               <span className="proof-logo">
                 <ShieldCheck size={16} /> Compliance & Tax Ready
-              </span>
-              <span className="proof-logo">
-                <Languages size={16} /> English · Français
               </span>
               <span className="proof-logo">
                 <Wifi size={16} /> Offline-First Sync
@@ -1377,6 +197,113 @@ export default function LandingPage() {
               <div>
                 <div style={{ color: ink, fontSize: 12, fontWeight: 700 }}>VAT filed</div>
                 <div style={{ color: muted, fontSize: 11 }}>Ready for export</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============= TRUSTED BY / ETHIO TELECOM PARTNER ============= */}
+        <section className="telecom-partner-section">
+          <div className="telecom-partner-inner">
+            <div className="telecom-partner-card">
+              <div className="telecom-partner-header">
+                <div className="telecom-partner-brand-block">
+                  <div className="telecom-logo-wrapper">
+                    <img
+                      src="/ethio-telecom.png"
+                      alt="Ethio Telecom"
+                      className="telecom-logo-img"
+                    />
+                  </div>
+                  <div className="telecom-brand-meta">
+                    <div className="telecom-badge">
+                      <ShieldCheck size={13} className="telecom-badge-icon" />
+                      <span>Official Strategic Partner</span>
+                    </div>
+                    <div className="telecom-brand-name">
+                      ethio telecom <span>· telebirr</span>
+                    </div>
+                    <div className="telecom-status">
+                      <span className="telecom-status-pulse" />
+                      <span>Direct Enterprise Payment Integration</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="telecom-partner-text-block">
+                  <div className="telecom-eyebrow">National Payment Gateway</div>
+                  <h2 className="telecom-title">
+                    Trusted by & Integrated with <em>Ethio Telecom</em>
+                  </h2>
+                  <p className="telecom-desc">
+                    Beyond ERP connects directly with Ethio Telecom and telebirr. Ethiopian businesses can now collect instant customer payments, automate B2B settlements, and reconcile digital invoices in real time with bank-grade security.
+                  </p>
+                </div>
+              </div>
+
+              <div className="telecom-features-grid">
+                <div className="telecom-feature-item">
+                  <div className="telecom-feature-icon-box green">
+                    <CreditCard size={17} />
+                  </div>
+                  <div>
+                    <h3 className="telecom-feature-title">telebirr Instant Pay</h3>
+                    <p className="telecom-feature-desc">
+                      Accept one-click telebirr payments on Point-of-Sale, digital invoices, and customer web portals.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="telecom-feature-item">
+                  <div className="telecom-feature-icon-box cyan">
+                    <RefreshCw size={17} />
+                  </div>
+                  <div>
+                    <h3 className="telecom-feature-title">Real-Time Reconciliation</h3>
+                    <p className="telecom-feature-desc">
+                      Automated ledger matching syncs telebirr transaction IDs with sales orders and tax invoices instantly.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="telecom-feature-item">
+                  <div className="telecom-feature-icon-box">
+                    <Building2 size={17} />
+                  </div>
+                  <div>
+                    <h3 className="telecom-feature-title">Automated B2B Payouts</h3>
+                    <p className="telecom-feature-desc">
+                      Disburse supplier settlements, payroll advances, and utility payments via enterprise telebirr rails.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="telecom-feature-item">
+                  <div className="telecom-feature-icon-box green">
+                    <Lock size={17} />
+                  </div>
+                  <div>
+                    <h3 className="telecom-feature-title">National Security Rails</h3>
+                    <p className="telecom-feature-desc">
+                      Compliant with Ethiopian financial regulations, encrypted webhooks, and 99.9% uptime infrastructure.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="telecom-metrics-strip">
+                <div className="telecom-metric-item">
+                  <span className="telecom-metric-dot" />
+                  <span><strong>Zero-Wait Settlement:</strong> Instant merchant credit</span>
+                </div>
+                <div className="telecom-metric-item">
+                  <span className="telecom-metric-dot" />
+                  <span><strong>Automated VAT:</strong> 15% tax invoices with telebirr reference</span>
+                </div>
+                <div className="telecom-metric-item">
+                  <span className="telecom-metric-dot" />
+                  <span><strong>Nationwide:</strong> Full coverage across Addis Ababa and all regional states</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1668,7 +595,7 @@ function LogoTile({
           width: iconSize,
           height: iconSize,
           display: "block",
-          background: 'url("/beyond.ico") center / contain no-repeat',
+          background: 'url("/logo.png") center / cover no-repeat',
         }}
       />
     </span>

@@ -117,7 +117,8 @@ function RegisterDetailsContent() {
     width: size,
     height: size,
     display: "block",
-    background: 'url("/beyond.ico") center / contain no-repeat',
+    background: 'url("/logo.png") center / cover no-repeat',
+    borderRadius: "50%",
   });
 
   const labelStyle: CSSProperties = {

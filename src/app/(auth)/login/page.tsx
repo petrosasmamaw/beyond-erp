@@ -102,6 +102,11 @@ export default function LoginPage() {
 
         {/* Logo */}
         <div style={{ display: "flex", alignItems: "center", gap: 10, position: "relative" }}>
+          <img
+            src="/logo.png"
+            alt="BeyondERP"
+            style={{ width: 36, height: 36, borderRadius: "50%", objectFit: "cover", boxShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
+          />
           <span style={{ fontWeight: 800, fontSize: 18, color: "white", letterSpacing: "-0.02em" }}>BeyondERP</span>
         </div>
 
@@ -142,6 +147,11 @@ export default function LoginPage() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 28px" }}>
           {/* Mobile-only logo */}
           <div className="login-mobile-logo" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <img
+              src="/logo.png"
+              alt="BeyondERP"
+              style={{ width: 28, height: 28, borderRadius: "50%", objectFit: "cover" }}
+            />
             <span style={{ fontWeight: 800, fontSize: 16, color: ink, letterSpacing: "-0.02em" }}>BeyondERP</span>
           </div>
           <ThemeToggle />

@@ -12,6 +12,7 @@ import { sectorDefinitions } from "@/features/erp/config";
 import type { RegistrationStatus } from "@/lib/types";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Sun, Moon } from "lucide-react";
+import { Footer } from "@/components/navigation/Footer";
 
 const SA_PASSWORD = process.env.NEXT_PUBLIC_SA_PASSWORD ?? "beyond@sa2026";
 const SESSION_KEY = "beyond_sa_v1";
@@ -273,9 +274,11 @@ export default function SuperAdminPage() {
         {/* Brand */}
         <div style={{ padding: "22px 20px 18px", borderBottom: `1px solid ${S.border}` }}>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <div style={{ width: 34, height: 34, borderRadius: 9, background: "linear-gradient(135deg,#2563eb,#4f46e5)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Shield size={16} color="white" />
-            </div>
+            <img
+              src="/logo.png"
+              alt="BeyondERP"
+              style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }}
+            />
             <div>
               <strong style={{ display: "block", fontSize: 14, color: S.white, lineHeight: 1.2, letterSpacing: "-0.02em" }}>BeyondERP</strong>
               <span style={{ fontSize: 10, color: S.muted, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>Admin Console</span>
@@ -960,6 +963,7 @@ export default function SuperAdminPage() {
             </div>
           )}
 
+          <Footer inApp />
         </div>
       </div>
 

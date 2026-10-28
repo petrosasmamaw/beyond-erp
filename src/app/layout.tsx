@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./landing.css";
 import type { Metadata, Viewport } from "next";
 import { Inter_Tight } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -13,13 +14,21 @@ const interTight = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "BeyondERP",
+  title: "BeyondERP - Enterprise Resource Planning",
   description: "Comprehensive enterprise resource planning platform.",
   manifest: "/manifest.json",
+  icons: {
+    icon: [
+      { url: "/logo.png" },
+      { url: "/favicon.ico" }
+    ],
+    shortcut: "/logo.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#1d4ed8",
+  themeColor: "#2563eb",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1
@@ -29,6 +38,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={interTight.variable} suppressHydrationWarning>
       <head>
+        {/* Favicon & Logo */}
+        <link rel="icon" type="image/png" href="/logo.png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         {/* Prevent flash of wrong theme */}
         <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('beyond_theme')||( window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);})()` }} />
         <link
