@@ -54,8 +54,7 @@ export default function LandingPage() {
       <div className="landing-card">
         {/* ============= NAV ============= */}
         <nav className="landing-nav">
-          <a className="nav-brand" href="#" style={{ textDecoration: "none", fontFamily: '"Inter Tight", sans-serif', fontWeight: 700, fontSize: 22, letterSpacing: "-0.02em", display: "flex", alignItems: "center", gap: 10 }}>
-            <img src="/logo.png" alt="BeyondERP" style={{ width: 34, height: 34, borderRadius: "50%", objectFit: "cover" }} />
+          <a className="nav-brand" href="#">
             Beyond ERP
           </a>
 
