@@ -257,211 +257,160 @@
 
         .hero-right {
           position: relative;
-          background: linear-gradient(160deg, var(--landing-blue-deep) 0%, #1d4ed8 55%, #0f172a 100%);
-          border-top-left-radius: 28px;
-          border-bottom-left-radius: 28px;
-          padding: 40px;
+          background: #143d99;
+          border-top-left-radius: 48px;
+          border-bottom-left-radius: 48px;
+          padding: 38px 40px 0;
           display: flex;
-          align-items: center;
-          justify-content: center;
+          flex-direction: column;
           overflow: hidden;
-          margin: 18px 0 18px 18px;
+          min-height: 590px;
+          margin-left: 18px;
         }
 
-        .hero-right::before {
-          content: "";
-          position: absolute;
-          top: -80px;
-          right: -80px;
-          width: 280px;
-          height: 280px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(147, 197, 253, 0.18) 0%, transparent 70%);
-        }
-
-        .hero-right::after {
-          content: "";
-          position: absolute;
-          bottom: -60px;
-          left: -40px;
-          width: 220px;
-          height: 220px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
-        }
-
-        .floating-badge {
-          position: absolute;
-          top: 28px;
-          left: 28px;
-          background: var(--landing-ink);
-          color: var(--landing-card);
-          border-radius: 999px;
-          padding: 8px 14px 8px 8px;
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 12px;
-          font-weight: 700;
-          z-index: 3;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-        }
-
-        .floating-badge .avatars {
+        .hero-right-header {
           display: flex;
-        }
-
-        .avatar {
-          width: 22px;
-          height: 22px;
-          border-radius: 50%;
-          border: 2px solid var(--landing-ink);
-          margin-left: -8px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 9px;
-          font-weight: 800;
-        }
-
-        .avatar:first-child {
-          margin-left: 0;
-        }
-
-        .mockup {
+          justify-content: space-between;
+          align-items: flex-start;
           position: relative;
           z-index: 2;
-          width: 100%;
-          max-width: 460px;
-          background: var(--landing-surface);
-          border-radius: 18px;
-          box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
-          overflow: hidden;
+          gap: 24px;
         }
 
-        .mockup-top {
-          padding: 16px 18px;
-          border-bottom: 1px solid var(--landing-border-soft);
+        .hero-checklist {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .hero-check-item {
           display: flex;
           align-items: center;
-          justify-content: space-between;
+          gap: 9px;
+          color: #ffffff;
+          font-size: 13.5px;
+          font-weight: 500;
+          letter-spacing: -0.01em;
+          opacity: 0.95;
         }
 
-        .mockup-top-left {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .mockup-dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-        }
-
-        .mockup-body {
-          padding: 20px;
-          display: grid;
-          gap: 14px;
-        }
-
-        .mockup-metric-row {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 10px;
-        }
-
-        .mockup-metric {
-          background: var(--landing-surface-soft);
-          border-radius: 12px;
-          padding: 14px;
-          border: 1px solid var(--landing-border-soft);
-        }
-
-        .mockup-metric-label {
-          color: var(--landing-muted);
-          font-size: 10px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .mockup-metric-value {
-          color: var(--landing-ink);
-          font-size: 20px;
-          font-weight: 700;
-          margin-top: 6px;
-          display: flex;
-          align-items: baseline;
-          gap: 6px;
-        }
-
-        .mockup-metric-delta {
-          color: #10b981;
-          font-size: 11px;
-          font-weight: 700;
-        }
-
-        .mockup-chart {
-          background: var(--landing-surface-soft);
-          border-radius: 12px;
-          border: 1px solid var(--landing-border-soft);
-          padding: 14px;
-        }
-
-        .chart-bars {
-          display: flex;
-          align-items: flex-end;
-          gap: 6px;
-          height: 70px;
-          margin-top: 10px;
-        }
-
-        .chart-bar {
-          flex: 1;
-          background: var(--landing-blue);
-          border-radius: 4px 4px 0 0;
+        .hero-check-icon {
+          color: #ffffff;
           opacity: 0.85;
+          flex-shrink: 0;
         }
 
-        .mockup-list-item {
+        .hero-highlight-badges {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          align-items: flex-start;
+        }
+
+        .hero-highlight-item {
           display: flex;
           align-items: center;
           gap: 10px;
-          padding: 10px 0;
-          border-top: 1px solid var(--landing-border-soft);
+          color: #ffffff;
+          font-size: 15px;
+          font-weight: 700;
+          letter-spacing: -0.01em;
         }
 
-        .mockup-list-item:first-child {
-          border-top: 0;
-          padding-top: 0;
+        .hero-highlight-icon-box {
+          width: 26px;
+          height: 26px;
+          border-radius: 6px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          color: #ffffff;
+          flex-shrink: 0;
         }
 
-        .floating-card {
+        .ai-icon-box {
+          border: 1.5px solid rgba(255, 255, 255, 0.92);
+          border-radius: 6px;
+          width: 24px;
+          height: 24px;
+        }
+
+        .ai-icon-text {
+          font-size: 12px;
+          font-weight: 800;
+          line-height: 1;
+          letter-spacing: -0.02em;
+        }
+
+        .hero-mockup-wrapper {
           position: absolute;
-          bottom: 40px;
-          right: -10px;
+          right: 0;
+          bottom: 0;
+          width: 88%;
+          max-width: 530px;
+          z-index: 1;
+          pointer-events: none;
+          display: flex;
+          justify-content: flex-end;
+          align-items: flex-end;
+          line-height: 0;
+        }
+
+        .hero-mockup-img {
+          width: 100%;
+          height: auto;
+          display: block;
+          object-fit: contain;
+          object-position: right bottom;
+          transform: scale(1.04);
+          transform-origin: right bottom;
+        }
+
+        .hero-pricing-badge {
+          position: absolute;
+          right: 32px;
+          bottom: 24px;
           z-index: 3;
-          background: var(--landing-card);
-          border-radius: 14px;
-          padding: 14px 16px;
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
           display: flex;
           align-items: center;
           gap: 12px;
-          min-width: 200px;
+          color: #ffffff;
+          user-select: none;
         }
 
-        .floating-card-icon {
-          width: 36px;
-          height: 36px;
-          border-radius: 10px;
-          background: #dcfce7;
-          color: #16a34a;
+        .hero-pricing-icon {
+          color: #ffffff;
+          flex-shrink: 0;
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .hero-pricing-info {
+          display: flex;
+          flex-direction: column;
+          line-height: 1.15;
+        }
+
+        .hero-pricing-title {
+          font-size: 13px;
+          font-weight: 700;
+          color: #ffffff;
+          letter-spacing: -0.01em;
+        }
+
+        .hero-pricing-cost {
+          font-size: 19px;
+          font-weight: 800;
+          color: #ffffff;
+          letter-spacing: -0.02em;
+        }
+
+        .hero-pricing-sub {
+          font-size: 11px;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.85);
+          margin-top: 2px;
         }
 
         /* ===== ETHIO TELECOM / TELEBIRR PARTNERSHIP ===== */
@@ -1485,6 +1434,14 @@
           }
           .hero-proof {
             gap: 18px;
+          }
+          .hero-pricing-badge {
+            right: 18px;
+            bottom: 16px;
+            gap: 8px;
+          }
+          .hero-pricing-cost {
+            font-size: 16px;
           }
           .nav-signin {
             display: none;

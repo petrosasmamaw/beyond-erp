@@ -1,17 +1,9 @@
 import "./globals.css";
 import "./landing.css";
 import type { Metadata, Viewport } from "next";
-import { Inter_Tight } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { AppProvider } from "@/contexts/AppContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
-
-const interTight = Inter_Tight({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-sans",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "BeyondERP - Enterprise Resource Planning",
@@ -36,7 +28,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={interTight.variable} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Favicon & Logo */}
         <link rel="icon" type="image/png" href="/logo.png" />

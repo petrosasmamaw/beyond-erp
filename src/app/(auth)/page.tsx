@@ -19,6 +19,8 @@ import {
   Globe2,
   CreditCard,
   Building2,
+  Languages,
+  UserCheck,
 } from "lucide-react";
 import { sectorDefinitions } from "@/features/erp/config";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -110,93 +112,69 @@ export default function LandingPage() {
           </div>
 
           <div className="hero-right">
-            <div className="floating-badge">
-              <div className="avatars">
-                <span className="avatar" style={{ background: "#f97316" }}>A</span>
-                <span className="avatar" style={{ background: "#7c3aed" }}>M</span>
-                <span className="avatar" style={{ background: "#0f766e" }}>T</span>
+            <div className="hero-right-header">
+              <div className="hero-checklist">
+                <div className="hero-check-item">
+                  <CheckCircle2 size={14} className="hero-check-icon" />
+                  <span>Launch in 3 day</span>
+                </div>
+                <div className="hero-check-item">
+                  <CheckCircle2 size={14} className="hero-check-icon" />
+                  <span>Custom white label</span>
+                </div>
+                <div className="hero-check-item">
+                  <CheckCircle2 size={14} className="hero-check-icon" />
+                  <span>Free training</span>
+                </div>
+                <div className="hero-check-item">
+                  <CheckCircle2 size={14} className="hero-check-icon" />
+                  <span>24/7 all year support</span>
+                </div>
               </div>
-              <span>Live · 12 teams online</span>
-            </div>
 
-            <div className="mockup">
-              <div className="mockup-top">
-                <div className="mockup-top-left">
-                  <span className="mockup-dot" style={{ background: "#ef4444" }} />
-                  <span className="mockup-dot" style={{ background: "#f59e0b" }} />
-                  <span className="mockup-dot" style={{ background: "#10b981" }} />
+              <div className="hero-highlight-badges">
+                <div className="hero-highlight-item">
+                  <div className="hero-highlight-icon-box">
+                    <Languages size={18} />
+                  </div>
+                  <span>3 local language</span>
                 </div>
-                <span style={{ color: muted, fontSize: 11, fontWeight: 600 }}>
-                  beyond-erp.app
-                </span>
-              </div>
-
-              <div className="mockup-body">
-                <div className="mockup-metric-row">
-                  <div className="mockup-metric">
-                    <div className="mockup-metric-label">Revenue</div>
-                    <div className="mockup-metric-value">
-                      CAD 428k
-                      <span className="mockup-metric-delta">+12%</span>
-                    </div>
+                <div className="hero-highlight-item">
+                  <div className="hero-highlight-icon-box">
+                    <UserCheck size={18} />
                   </div>
-                  <div className="mockup-metric">
-                    <div className="mockup-metric-label">Orders</div>
-                    <div className="mockup-metric-value">
-                      1,284
-                      <span className="mockup-metric-delta">+8%</span>
-                    </div>
-                  </div>
+                  <span>Fayda Verification</span>
                 </div>
-
-                <div className="mockup-chart">
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ color: ink, fontSize: 12, fontWeight: 700 }}>Weekly sales</span>
-                    <span style={{ color: muted, fontSize: 10, fontWeight: 600 }}>This week</span>
+                <div className="hero-highlight-item">
+                  <div className="hero-highlight-icon-box ai-icon-box">
+                    <span className="ai-icon-text">Ai</span>
                   </div>
-                  <div className="chart-bars">
-                    {[40, 65, 50, 80, 45, 90, 70].map((h, i) => (
-                      <div
-                        key={i}
-                        className="chart-bar"
-                        style={{ height: `${h}%`, opacity: i === 5 ? 1 : 0.55 }}
-                      />
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <div className="mockup-list-item">
-                    <span style={{ width: 28, height: 28, borderRadius: 8, background: `${blue}18`, color: blue, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Receipt size={14} />
-                    </span>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ color: ink, fontSize: 12, fontWeight: 600 }}>Invoice #4821</div>
-                      <div style={{ color: muted, fontSize: 11 }}>VAT receipt issued</div>
-                    </div>
-                    <span style={{ color: "#10b981", fontSize: 11, fontWeight: 700 }}>Paid</span>
-                  </div>
-                  <div className="mockup-list-item">
-                    <span style={{ width: 28, height: 28, borderRadius: 8, background: "#f9731618", color: "#f97316", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                      <Package size={14} />
-                    </span>
-                    <div style={{ flex: 1 }}>
-                      <div style={{ color: ink, fontSize: 12, fontWeight: 600 }}>Stock sync</div>
-                      <div style={{ color: muted, fontSize: 11 }}>12 items queued</div>
-                    </div>
-                    <span style={{ color: blue, fontSize: 11, fontWeight: 700 }}>Syncing</span>
-                  </div>
+                  <span>Ai Assistance</span>
                 </div>
               </div>
             </div>
 
-            <div className="floating-card">
-              <div className="floating-card-icon">
-                <CheckCircle2 size={18} />
+            <div className="hero-mockup-wrapper">
+              <img
+                src="/hero-mockup.png"
+                alt="Beyond ERP Tablet Workspace"
+                className="hero-mockup-img"
+              />
+            </div>
+
+            <div className="hero-pricing-badge">
+              <div className="hero-pricing-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="4" width="18" height="6" rx="2" />
+                  <path d="M7 10v9l2-1 1.5 1 1.5-1 1.5 1 1.5-1 2 1V10" />
+                  <line x1="9" y1="13" x2="15" y2="13" />
+                  <line x1="9" y1="16" x2="13" y2="16" />
+                </svg>
               </div>
-              <div>
-                <div style={{ color: ink, fontSize: 12, fontWeight: 700 }}>VAT filed</div>
-                <div style={{ color: muted, fontSize: 11 }}>Ready for export</div>
+              <div className="hero-pricing-info">
+                <span className="hero-pricing-title">Starting From</span>
+                <span className="hero-pricing-cost">100 birr/day</span>
+                <span className="hero-pricing-sub">billed annually</span>
               </div>
             </div>
           </div>
